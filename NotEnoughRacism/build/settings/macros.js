@@ -27,38 +27,6 @@ Color,
 class Macros {
 
 
-    // @SwitchProperty({
-    //     name: "Stop Macros in GUI",
-    //     category: "General",
-    //     subcategory: "Settings"
-    // })
-    // guiCheck = true;
-
-    // @SwitchProperty({
-    //     name: "Toggle Sprint Overlay",
-    //     description: "Renders a message saying ur sprinting",
-    //     category: "General",
-    //     subcategory: "Settings"
-    // })
-    // toggleSprintRender = true;
-
-    // @SwitchProperty({
-    //     name: "Anti Escrow",
-    //     description: "Re-opens the auction house when you get the escrow error",
-    //     category: "General",
-    //     subcategory: "⭍Escrow"
-    // })
-    // antiEscrow = false;
-
-    // @SelectorProperty({
-    //     name: "Anti Escrow Type",
-    //     description: "Choose the type of Anti Escrow",
-    //     category: "General",
-    //     subcategory: "⭍Escrow",
-    //     options: ["Normal", "Open Auction Browser"]
-    // })
-    // antiEscrowType = 1;
-
     @SliderProperty({
         name: "In Combat Macro Click Delay",
         description: "Set a Click Delay for In Combat Macros\n&8- Setting this lower than your ping will cause it to break, so ensure the delay is higher than your ping",
@@ -85,14 +53,6 @@ class Macros {
     })
     autoCombine = false;
 
-    // @SwitchProperty({
-    //     name: "Auto Harp",
-    //     description: "Automatically completes harp songs.",
-    //     category: "Misc",
-    //     //  subcategory: "Misc"
-    // })
-    // autoHarp = false;
-
     @SwitchProperty({
         name: "Auto Mort",
         description: "Automatically starts dungeon and readies up.",
@@ -100,16 +60,6 @@ class Macros {
         // subcategory: "Misc"
     })
     autoMort = false;
-
-    // @SwitchProperty({
-    //     name: "Auto Party Transfer",
-    //     description: "Automatically transfers the party to another player",
-    //     category: "Misc",
-    //     //subcategory: "Misc"
-    // })
-    // autoTransfer = false;
-
-    //---------------------------------------------------------------------------------------------------
 
     @SelectorProperty({
         name: "Wardrobe Macro Type",
@@ -119,74 +69,6 @@ class Macros {
         options: ["Normal", "In Combat"]
     })
     wardrobeType = 0;
-
-    // @SelectorProperty({
-    //     name: "Wardrobe Macro 1",
-    //     category: "Macros",
-    //     subcategory: "Wardrobe",
-    //     options: [
-    //         "Wardrobe Slot 1",
-    //         "Wardrobe Slot 2",
-    //         "Wardrobe Slot 3",
-    //         "Wardrobe Slot 4",
-    //         "Wardrobe Slot 5",
-    //         "Wardrobe Slot 6",
-    //         "Wardrobe Slot 7",
-    //         "Wardrobe Slot 8",
-    //         "Wardrobe Slot 9"
-    //     ]
-    // }) wardrobeSlot1 = 0;
-
-    // @SelectorProperty({
-    //     name: "Wardrobe Macro 2",
-    //     category: "Macros",
-    //     subcategory: "Wardrobe",
-    //     options: [
-    //         "Wardrobe Slot 1",
-    //         "Wardrobe Slot 2",
-    //         "Wardrobe Slot 3",
-    //         "Wardrobe Slot 4",
-    //         "Wardrobe Slot 5",
-    //         "Wardrobe Slot 6",
-    //         "Wardrobe Slot 7",
-    //         "Wardrobe Slot 8",
-    //         "Wardrobe Slot 9"
-    //     ]
-    // }) wardrobeSlot2 = 0;
-
-    // @SelectorProperty({
-    //     name: "Wardrobe Macro 3",
-    //     category: "Macros",
-    //     subcategory: "Wardrobe",
-    //     options: [
-    //         "Wardrobe Slot 1",
-    //         "Wardrobe Slot 2",
-    //         "Wardrobe Slot 3",
-    //         "Wardrobe Slot 4",
-    //         "Wardrobe Slot 5",
-    //         "Wardrobe Slot 6",
-    //         "Wardrobe Slot 7",
-    //         "Wardrobe Slot 8",
-    //         "Wardrobe Slot 9"
-    //     ]
-    // }) wardrobeSlot3 = 0;
-
-    // @SelectorProperty({
-    //     name: "Wardrobe Macro 4",
-    //     category: "Macros",
-    //     subcategory: "Wardrobe",
-    //     options: [
-    //         "Wardrobe Slot 1",
-    //         "Wardrobe Slot 2",
-    //         "Wardrobe Slot 3",
-    //         "Wardrobe Slot 4",
-    //         "Wardrobe Slot 5",
-    //         "Wardrobe Slot 6",
-    //         "Wardrobe Slot 7",
-    //         "Wardrobe Slot 8",
-    //         "Wardrobe Slot 9"
-    //     ]
-    // }) wardrobeSlot4 = 0;
 
     @SelectorProperty({
         name: "Storage Macro Type",
@@ -323,9 +205,6 @@ class Macros {
     })
     echestPage = 0;
 
-    //---------------------------------------------------------------------------------------------------
-    //---------------------------------------------------------------------------------------------------
-    //---------------------------------------------------------------------------------------------------
 
     @TextProperty({
         name: "Swap Delay",
@@ -381,9 +260,17 @@ class Macros {
         description: "Change AOTS Macro bewteen Toggle and Hold",
         category: "Misc",
         subcategory: "Axe of the Shredded",
-        options: ["Toggle", "Hold"]
+        options: ["Toggle", "Hold", "Left Click"]
     })
     axeSwap = 0;
+
+    @TextProperty({
+        name: "Axe of the Shredded Left Click Item",
+        description: "Item you want Left Click AOTS to work with",
+        category: "Misc",
+        subcategory: "Axe of the Shredded"
+    })
+    aotsLCItem = "Valkyrie"; 
 
     @TextProperty({
         name: "Left Click Soul Whip Item",
@@ -392,8 +279,6 @@ class Macros {
         subcategory: "Soul Whip"
     })
     leftClickWhip = "Atomsplit Katana"
-
-    //---------------------------------------------------------------------------------------------------
 
     @SelectorProperty({
         name: "Swap Type",
@@ -426,7 +311,6 @@ class Macros {
     })
     doubleSwapSlot2 = ""
 
-    //---------------------------------------------------------------------------------------------------
 
     @SelectorProperty({
         name: "Swap Type",
@@ -475,21 +359,6 @@ class Macros {
     })
     tripleSwapDelay = 100;
 
-    // @SwitchProperty({
-    //     name: "Auto Fish Toggle",
-    //     description: "Click the switch to the right to toggle the Auto Fish module",
-    //     category: "Auto Fish",
-    //     subcategory: ""
-    // })
-    // autoFishToggle = false;
-
-    // @SwitchProperty({
-    //     name: "Invoke Random Motion",
-    //     description: "Choose whether or not you want Auto Fish to press some random key (W,A,S,D) + small head rotation to ensure that you gain fishing xp\n&c&lWarning:&r&c This feature is &lUSE AT YOUR OWN RISK&r&c, because I don't know if Hypixel can detect my &r&cslowly repeating system behind the motion!\n&dNote: &rIf you have this setting enabled, you need to have at least 1, preferably 2 to 3 blocks of space to each direction\n\nUnfortunately, it does not fully work when pulling out mobs that you don't oneshot, because I currently have not made a way to kill them past rod cast. :(",
-    //     category: "Auto Fish",
-    //     subcategory: ""
-    // })
-    // autoFishRandomMotion = false;
 
     constructor() {
         this.initialize(this);

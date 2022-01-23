@@ -15,7 +15,8 @@ import {
     DiscordRichPresence,
     DiscordEventHandlers,
     ghostBlockExclude,
-    blockCoords
+    blockCoords,
+    SPOTIFY_PREFIX
 } from "./utils/Constants";
 
 let inHowl = false;
@@ -52,12 +53,24 @@ import { autoSimonSays, clickSimonSays } from "./features/macros/AutoSimonSays";
 import { blockGS, blockGyro, blockSbMenu } from "./features/misc/BlockClicks";
 import { grindGhosts } from "./features/macros/SoulWhipSwap";
 import { leftClickSoulWhip } from "./features/macros/LeftClickWhip";
-import { aotsSwap } from "./features/macros/AxeSwap";
+import { aotsClicked, aotsSwap } from "./features/macros/AxeSwap";
 import { autoRogueSword } from "./features/macros/AutoRogueSword";
 import { termAC } from "./features/macros/TerminatorAutoClicker";
 import { playerGhostArm } from "./features/misc/PlayerGhostArm";
 import { zombieGhostArm } from "./features/misc/SummonsGhostArm";
 import { witherCloakGhostArm } from "./features/misc/CreeperGhostArm";
+import { drawBoxOnEntity, getEntities } from "./features/esp/ESP";
+import { sercretAura } from "./features/macros/SecretAura";
+// import { rpc } from "./features/misc/RichPresence";
+import SpotifyController from "./utils/SpotifyController";
+import { s1LeapGUI, s1LeapTick } from "./features/guimacros/S1Leap";
+import { buggedChunkLeapGUI, buggedChunkLeapTick } from "./features/guimacros/BuggedChunkLeap";
+import { autoSpirit } from "./features/guimacros/AutoSpirit";
+import { doubleSwapClick, doublwSwapStep } from "./features/macros/DoubleSwap";
+import { tripleSwapClick, tripleSwapStep } from "./features/macros/TripleSwap";
+import { isMouseOver, spotifyGuiScroll, spotifyRenderOverlay } from "./utils/spotifyGui";
+import { inBoss } from "./utils/IslandUtils";
+import { getCorrectLivid } from "./features/misc/LividGhostArm";
 
 const ghostBlockBind = new KeyBind("Ghost Blocks", Keyboard.KEY_NONE, ADVANCE_PREFIX);
 const tradeMacro = new KeyBind("Trade Menu", Keyboard.KEY_NONE, CHAT_PREFIX);
@@ -89,6 +102,12 @@ const leftClickWhip = new KeyBind("Left Click Soulwhip", Keyboard.KEY_NONE, ADVA
 const useAxe = new KeyBind("Axe Swap", Keyboard.KEY_NONE, ADVANCE_PREFIX);
 const autoRogue = new KeyBind("Auto Rogue Sword", Keyboard.KEY_NONE, ADVANCE_PREFIX);
 const autoClicker = new KeyBind("Terminator AC", Keyboard.KEY_NONE, ADVANCE_PREFIX)
+const secretauraSwitchSettingsKeybind = new KeyBind("Secret Aura", Keyboard.KEY_NONE, ADVANCE_PREFIX);
+const doubleSwap = new KeyBind("Double Swap Macro", Keyboard.KEY_NONE, ADVANCE_PREFIX);
+const tripleSwap = new KeyBind("Triple Swap Macro", Keyboard.KEY_NONE, ADVANCE_PREFIX);
+
+const spotifyNext = new KeyBind("Next Song", Keyboard.KEY_NONE, SPOTIFY_PREFIX)
+const spotifyPrev = new KeyBind("Previous Song", Keyboard.KEY_NONE, SPOTIFY_PREFIX)
 
 let termSwap = false;
 let isGrindingGhosts = false;
@@ -96,6 +115,8 @@ let lcWhipToggle = false;
 let axeSwap = false;
 let autoSpeed = false;
 let toggled = false
+let doubleSwapToggle = false;
+let tripleSwapToggle = false;
 
 new ClickMacro("packet", "right", new KeyBind("Teleport Macro", Keyboard.KEY_NONE, ITEM_PREFIX), 25, "isKeyDown", "Aspect of the End", "Aspect of the Void");
 new ClickMacro("packet", "right", new KeyBind("Use Wither Cloak", Keyboard.KEY_NONE, ITEM_PREFIX), 25, "isPressed", "Wither Cloak Sword");
@@ -105,15 +126,27 @@ new ClickMacro("packet", "right", new KeyBind("Use Fishing Rod", Keyboard.KEY_NO
 new ClickMacro("packet", "left", new KeyBind("Use Gyro Wand", Keyboard.KEY_NONE, ITEM_PREFIX), 25, "isPressed", "gyrokinetic wand");
 new ClickMacro("packet", "left", new KeyBind("Use Gloomlock Grimoire", Keyboard.KEY_NONE, ITEM_PREFIX), 25, "isPressed", "gloomlock grimoire");
 
-register("tick", () => {
+register("tick", (ticks) => {
+    if (dungeons.autoS1Leap) {
+        s1LeapTick();
+    }
+    if (dungeons.buggedChunkLeap) {
+        buggedChunkLeapTick();
+    }
     if (macros.autoCombine) {
         autoCombine();
     }
     if (macros.autoMort) {
-        autoMort();
+        autoMort(ticks);
     }
     if (macros.autoSalvage) {
         autoSalvage();
+    }
+    if (spotifyNext.isPressed()) {
+        SpotifyController.skipToNext()
+    }
+    if (spotifyPrev.isPressed()) {
+        SpotifyController.skipToPrevious()
     }
     if (useEndStone.isPressed()) {
         endStoneSwordtoKatana();
@@ -142,6 +175,15 @@ register("tick", () => {
     if (storageMacro.isPressed()) {
         openStorageTick();
     }
+    if (secretauraSwitchSettingsKeybind.isPressed()) {
+        if (dungeons.secretAuraToggle) {
+            ChatLib.chat(PREFIX + "&rSecret Aura &cDisabled");
+            dungeons.secretAuraToggle = false;
+        } else if (!dungeons.secretAuraToggle) {
+            ChatLib.chat(PREFIX + "&rSecret Aura &aEnabled");
+            dungeons.secretAuraToggle = true;
+        }
+    }
     if (macros.termSwap === 0) {
         if (termToggle.isPressed()) {
             ChatLib.chat(`${(termSwap = !termSwap) ? PREFIX + '&rTerminator Swap &aEnabled' : PREFIX + '&rTerminator Swap &cDisabled'}`);
@@ -156,7 +198,7 @@ register("tick", () => {
     if (dungeons.autoSS && dungeons.autoSSType === 0) {
         autoSimonSays();
     }
-    if (macros.axeSwap === 0) {
+    if (macros.axeSwap === 0 || macros.axeSwap === 2) {
         if (useAxe.isPressed()) {
             lastSwap = new Date().getTime();
             ChatLib.chat(`${(axeSwap = !axeSwap) ? PREFIX + '&rAxe Swap &aEnabled' : PREFIX + '&rAxe Swap &cDisabled'}`);
@@ -181,6 +223,12 @@ register("tick", () => {
             }
         }
     }
+    if (doubleSwap.isPressed()) {
+        ChatLib.chat(`${(doubleSwapToggle = !doubleSwapToggle) ? PREFIX + '&rDouble Swap &aEnabled' : PREFIX + '&rDouble Swap &cDisabled'}`);
+    }
+    if (tripleSwap.isPressed()) {
+        ChatLib.chat(`${(tripleSwapToggle = !tripleSwapToggle) ? PREFIX + '&rTriple Swap &aEnabled' : PREFIX + '&rTriple Swap &cDisabled'}`);
+    }
     if (autoClicker.isPressed()) {
         ChatLib.chat(`${(toggled = !toggled) ? PREFIX + '&rTerminator AC &aEnabled' : PREFIX + '&rTerminator AC &cDisabled'}`);
     }
@@ -189,8 +237,8 @@ register("tick", () => {
     autoWardrobeTick(firstSlot, secondSlot, thirdSlot, fourthSlot, fifthSlot, sixthSlot, seventhSlot, eighthSlot, ninethSlot);
     autoStorageTick(storageSlot1, storageSlot2, storageSlot3, storageSlot4);
     aotsSwap(useAxe, axeSwap);
-    if (slayer.ghostArm) {
-        zombieGhostArm(); 
+    if (config.ghostArm && config.ghostArmToggle) {
+        zombieGhostArm();
     }
 })
 
@@ -202,19 +250,30 @@ register("postGuiRender", () => {
     enderChestGUI();
     openStorageGUI();
     autoStorageGUI();
+    if (dungeons.s1Leap) {
+        s1LeapGUI();
+    }
+    if (dungeons.buggedChunkLeap) {
+        buggedChunkLeapGUI();
+    }
+    if (dungeons.autospiritToggle) {
+        autoSpirit();
+    }
 })
 register("playerInteract", (action, pos, event) => {
     if (dungeons.stonkGB) {
         stonkGhostBlockPlayerInteract(action, pos, event);
     }
-    if (dungeons.gsBlock) {
-        blockGS(event);
-    }
-    if (dungeons.gyroBlock) {
-        blockGyro(event);
-    }
-    if (config.blockSBMenu) {
-        blockSbMenu(event);
+    if (config.blockClicks) {
+        if (config.gsBlock) {
+            blockGS(action, event);
+        }
+        if (config.gyroBlock) {
+            blockGyro(action, event);
+        }
+        if (config.blockSBMenu) {
+            blockSbMenu(action, event);
+        }
     }
 });
 
@@ -229,12 +288,12 @@ register("step", () => {
         coordGhostBlocks();
     }
     if (toggled) {
-        termAC(toggled); 
+        termAC(toggled);
     }
 }).setFps(40);
 
 register("step", () => {
-    grindGhosts(soulWhipSwap);
+    grindGhosts(isGrindingGhosts);
     let scoreboardLines = Scoreboard.getLines().map(line => line.getName().removeFormatting().toLowerCase());
     scoreboardLines.forEach(line => {
         if (line.includes("howl") || line.includes("castle")) {
@@ -265,15 +324,41 @@ register("step", () => {
             inMist = true;
         }
     })
+    if (dungeons.secretAuraToggle) {
+        sercretAura();
+    }
+    if (doubleSwapToggle) {
+        doublwSwapStep();
+    }
+    if (tripleSwapToggle) {
+        tripleSwapStep();
+    }
 }).setFps(2);
 
-register("postRenderEntity", (entity, pos, pticks, event) => {
-    revealHiddenMobs(entity);
-    if (config.playerGhostArm) {
-        playerGhostArm(entity); 
+register("step", () => {
+    // rpc()
+}).setFps(1)
+
+register("worldLoad", () => {
+    if (SpotifyController.firstInitAttempt === false) {
+        SpotifyController.initialize();
     }
-    if (dungeons.creeperGhostArm) {
-        witherCloakGhostArm(entity); 
+})
+
+register("worldUnload", () => {
+    // rpc()
+})
+
+register("renderEntity", (entity, pos, pticks, event) => {
+    revealHiddenMobs(entity);
+    if (config.playerGhostArm && config.ghostArmToggle) {
+        playerGhostArm(entity);
+    }
+    if (config.creeperGhostArm && config.ghostArmToggle) {
+        witherCloakGhostArm(entity);
+    }
+    if (config.lividGhostArm && config.ghostArmToggle) {
+        getCorrectLivid(entity); 
     }
 });
 
@@ -282,4 +367,98 @@ register("clicked", (x, y, button, state) => {
         clickSimonSays(button);
     }
     leftClickSoulWhip(button, leftClickWhip);
+    if (axeSwap && macros.axeSwap === 2) {
+        aotsClicked(axeSwap, button);
+    }
+    if (doubleSwapToggle) {
+        //   ChatLib.chat("test")
+        doubleSwapClick(button);
+    }
+    if (tripleSwapToggle) {
+        tripleSwapClick(button);
+    }
 })
+
+register("step", () => {
+    if (esp.enabled) {
+        getEntities();
+    }
+}).setFps(esp.espRefreshRate);
+
+register("renderWorld", () => {
+    if (esp.enabled) {
+        drawBoxOnEntity();
+    }
+})
+
+register("scrolled", (x, y, direction) => {
+    spotifyGuiScroll(direction);
+})
+
+register("dragged", (dX, dY, x, y) => {
+    if (config.moveSongGui.isOpen()) {
+        if (isMouseOver(x, y, config.spotifyWidth, config.spotifyHeight)) {
+            config.spotifyX = x;
+            config.spotifyY = y;
+        }
+    }
+})
+
+register("renderOverlay", () => {
+    spotifyRenderOverlay(config.moveSongGui.isOpen());
+})
+
+register("guiClosed", () => {
+    if (config.moveSongGui.isOpen()) {
+        ChatLib.command("nergeneral", true);
+    }
+})
+
+let calcMsg = new Message(new TextComponent("&r                     &r&fSecrets Found: &r&bCalculating..&r"))
+let lastExtraStatsClick = [false, 0]
+register("chat", (event) => {
+    let reallyPureMsg = ChatLib.getChatMessage(event, true)
+    let pureMsg = ChatLib.getChatMessage(event, true).replace(/ /gi, "")
+    // console.log(reallyPureMsg.length + ": " + reallyPureMsg)
+    if (pureMsg.startsWith("&r&r&6>&e&lEXTRASTATS&6<")) {
+        lastExtraStatsClick = [true, new Date().getTime()];
+        ChatLib.say("/showextrastats");
+        calcMsg.chat()
+        // console.log(1)
+    }
+    if (new Date().getTime() - lastExtraStatsClick[1] > 2000) { return; }
+    if (pureMsg === "&r&a&l▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬&r") {
+        if (lastExtraStatsClick[0]) {
+            lastExtraStatsClick[0] = false
+        }
+        else {
+            cancel(event)
+        }
+    }
+    if (pureMsg.startsWith("&r&r&cTheCatacombs&r&8-")) {
+        cancel(event)
+    }
+    else if (pureMsg.startsWith("&r&r&fTotalDamageas")) {
+        cancel(event)
+    }
+    else if (pureMsg.startsWith("&r&r&fTeamScore:")) {
+        cancel(event)
+    }
+    else if (pureMsg.startsWith("&r&r&fEnemiesKilled:")) {
+        cancel(event)
+    }
+    else if (pureMsg.startsWith("&r&r&fDeaths:&r&c")) {
+        cancel(event)
+    }
+    else if (pureMsg.startsWith("&r&r&c☠&r&eDefeated&r&c")) {
+        cancel(event)
+    }
+    else if (pureMsg.startsWith("&r&r&fAllyHealing:&r&a")) {
+        cancel(event)
+    }
+    else if (pureMsg.startsWith("&r&r&fSecretsFound:")) {
+        cancel(event)
+        ChatLib.editChat(calcMsg, new Message(new TextComponent(reallyPureMsg)))
+    }
+
+}).setChatCriteria("${*}")

@@ -46,34 +46,6 @@ class Slayer {
         subcategory: "Player ESP"
     }) playerColor = Color.RED
 
-    // @SwitchProperty({
-    //     name: "Hide Crypt Ghoul Name Tag",
-    //     category: "QOL",
-    //     subcategory: "Hide Name Tags"
-    // })
-    // hideGhoulTag = false;
-
-    // @SwitchProperty({
-    //     name: "Hide Spider Name Tag",
-    //     category: "QOL",
-    //     subcategory: "Hide Name Tags"
-    // })
-    // hideSpiderTag = false;
-
-    // @SwitchProperty({
-    //     name: "Hide Wolf Name Tag",
-    //     category: "QOL",
-    //     subcategory: "Hide Name Tags"
-    // })
-    // hideWolfTag = false;
-
-    // @SwitchProperty({
-    //     name: "Hide Voidling Fanatic Name Tag",
-    //     category: "QOL",
-    //     subcategory: "Hide Name Tags"
-    // })
-    // hideEmanTag = false;
-
     @SwitchProperty({
         name: "Tarantula Miniboss ESP",
         description: "Enables Tarantula Miniboss ESP",
@@ -151,35 +123,35 @@ class Slayer {
     @SwitchProperty({
         name: "Revenant Miniboss ESP",
         description: "Enables Revenant Miniboss ESP",
-        category: "Revenant Horros",
+        category: "Revenant Horror",
         subcategory: "Miniboss"
     }) revMinis = false;
 
     @SwitchProperty({
         name: "Revenant Boss ESP",
         description: "Enables Revenant Boss ESP",
-        category: "Revenant Horros",
+        category: "Revenant Horror",
         subcategory: "Boss"
     }) revBoss = false;
 
     @ColorProperty({
         name: "Revenant Color",
         description: "Sets Revenant Miniboss Color ESP Color",
-        category: "Revenant Horros",
+        category: "Revenant Horror",
         subcategory: "Miniboss"
     }) revMiniColor = Color.GREEN
 
     @ColorProperty({
         name: "Atoned Revenant Miniboss Color",
         description: "Sets Atoned Revenant Miniboss ESP Color",
-        category: "Revenant Horros",
+        category: "Revenant Horror",
         subcategory: "Miniboss"
     }) atonedMini = Color.RED
 
     @ColorProperty({
         name: "Revenant Boss Color",
         description: "Sets Revenant Boss ESP Color",
-        category: "Revenant Horros",
+        category: "Revenant Horror",
         subcategory: "Boss"
     }) revBossColor = Color.BLUE
 
@@ -206,84 +178,6 @@ class Slayer {
         subcategory: "Miniboss"
     }) voidcrazedManiac = Color.RED
 
-    @SwitchProperty({
-        name: "Enable",
-        description: "Global Toggle",
-        category: "Voidgloom Seraph",
-        subcategory: "⭍Boss QOL"
-    })
-    emanEnabled = false;
-
-
-    // @SwitchProperty({
-    //     name: "Toggle Beacon Notification",
-    //     description: "Toggle on screen beacon notification",
-    //     category: "Voidgloom Seraph",
-    //     subcategory: "⭍Boss QOL"
-    // })
-    // emanBnotifenabled = false;
-
-    // @SliderProperty({
-    //     name: 'Beacon Notification Scale',
-    //     description: 'Beacon notification size',
-    //     category: 'Voidgloom Seraph',
-    //     subcategory: "⭍Boss QOL",
-    //     min: 1,
-    //     max: 10
-    // })
-    // emanBnotifscale = 5;
-
-    // @SliderProperty({
-    //     name: 'Beacon Notification X',
-    //     description: 'Beacon notification x',
-    //     category: 'Voidgloom Seraph',
-    //     subcategory: "⭍Boss QOL",
-    //     min: 0,
-    //     max: Renderer.screen.getWidth()
-    // })
-    // emanBnotifx = 1;
-
-    // @SliderProperty({
-    //     name: 'Beacon Notification Y',
-    //     description: 'Beacon notification y',
-    //     category: 'Voidgloom Seraph',
-    //     subcategory: "⭍Boss QOL",
-    //     min: 0,
-    //     max: Renderer.screen.getWidth()
-    // })
-    // emanBnotify = 1;
-
-    // @SwitchProperty({
-    //     name: "Toggle Beacon ESP",
-    //     description: "Toggle beacon outlines",
-    //     category: "Voidgloom Seraph",
-    //     subcategory: "⭍Boss QOL"
-    // })
-    // emanBespenabled = false;
-
-    // @SwitchProperty({
-    //     name: "Toggle Beacon tracers",
-    //     description: "Toggles beacon tracers",
-    //     category: "Voidgloom Seraph",
-    //     subcategory: "⭍Boss QOL"
-    // })
-    // emanBtracersenabled = false;
-
-    // @SwitchProperty({
-    //     name: "Toggle Head esp",
-    //     description: "Toggles head esp",
-    //     category: "Voidgloom Seraph",
-    //     subcategory: "⭍Boss QOL"
-    // })
-    // emanHespenabled = false;
-
-    // @SwitchProperty({
-    //     name: "Toggle Head tracer",
-    //     description: "Toggles head tracers",
-    //     category: "Voidgloom Seraph",
-    //     subcategory: "⭍Boss QOL"
-    // })
-    // emanHtracersenabled = false;
 
     constructor() {
         this.initialize(this);

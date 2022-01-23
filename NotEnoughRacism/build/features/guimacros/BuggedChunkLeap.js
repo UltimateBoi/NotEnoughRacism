@@ -1,4 +1,5 @@
 import { dungeons } from "../../index"; 
+import { RightClick } from "../../utils/Utils"; 
 
 let time;
 let leap = false;
@@ -39,7 +40,7 @@ const buggedChunkLeapTick = () => {
     if (leap) {
         if (new Date().getTime() - time > dungeons.buggedChunkLeapTime * 1000) {
             Player.getOpenedInventory().getItems().slice(36, 45).forEach((item, index) => {
-                if (item.getName().includes("Spirit Leap")) {
+                if (item !== null && item.getName().includes("Spirit Leap")) {
                     spiritSlot = index;
                 }
             })
@@ -56,7 +57,7 @@ const buggedChunkLeapGUI = () => {
         let inv = Player.getOpenedInventory();
         for (let i = 0; i < 45; i++) {
             let item = inv.getStackInSlot(i);
-            if (item.getName().toLowerCase().includes(String(dungeons.buggedChunkName))) {
+            if (item !== null && item.getName().toLowerCase().includes(String(dungeons.buggedChunkName))) {
                 let action = Action.of(inv, i, "CLICK");
                 action.setClickString("MIDDLE");
                 action.complete();

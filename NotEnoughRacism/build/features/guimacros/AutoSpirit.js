@@ -26,7 +26,7 @@ const autoSpirit = () => {
         let inv = Player.getOpenedInventory();
         for (let i = 0; i < 45; i++) {
             let item = inv.getStackInSlot(i);
-            if (item.getName().toLowerCase().includes(String(dungeons.spiritNAME))) {
+            if (item !== null && item.getName().toLowerCase().includes(String(dungeons.spiritNAME))) {
                 let action = Action.of(inv, i, "CLICK");
                 action.setClickString("MIDDLE");
                 action.complete();
@@ -34,3 +34,5 @@ const autoSpirit = () => {
         }
     }
 }
+
+export { autoSpirit }; 

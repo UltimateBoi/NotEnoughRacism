@@ -78,7 +78,7 @@ const autoWardrobeGUI = () => {
             let inv = Player.getOpenedInventory();
             for (let i = 0; i < 45; i++) {
                 let item = inv.getStackInSlot(i);
-                if (item.getName().includes(`Slot ${slotNumber}:`)) {
+                if (item!== null && item.getName().includes(`Slot ${slotNumber}:`)) {
                     let action = Action.of(inv, i, "CLICK");
                     action.setClickString("LEFT");
                     action.complete();

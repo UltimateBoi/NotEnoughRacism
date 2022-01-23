@@ -64,7 +64,7 @@ const autoRogueSword = (toggle) => {
             if (new Date().getTime() - sleepAmt > dungeons.autoRogueCD) {
                 try {
                     for (let i = 0; i < 9; i++) {
-                        if (Player.getInventory().getStackInSlot(i).getName().removeFormatting().toLowerCase().includes("rogue")) {
+                        if (Player.getInventory().getStackInSlot(i) !== null && Player.getInventory().getStackInSlot(i).getName().removeFormatting().toLowerCase().includes("rogue")) {
                             Client.sendPacket(new C09PacketHeldItemChange(i));
                             for (let j = 0; j < dungeons.autoRogueClicks; j++) {
                                 Client.sendPacket(new C08PacketPlayerBlockPlacement(new BlockPos(-1, -1, -1), 255, Player.getInventory().getStackInSlot(i).getItemStack(), 0, 0, 0));

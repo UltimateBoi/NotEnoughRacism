@@ -11,7 +11,7 @@ const rogueSwordMacro = () => {
         let playerSpeed = Player.getPlayer().func_70689_ay();
         if (playerSpeed < 0.5) {
             for (let i = 0; i < 9; i++) {
-                if (Player.getInventory().getStackInSlot(i).getName().includes("Rogue")) {
+                if (Player.getInventory().getStackInSlot(i) !== null && Player.getInventory().getStackInSlot(i).getName().includes("Rogue")) {
                     Client.sendPacket(new C09PacketHeldItemChange(i));
                     while (playerSpeed < 0.5) {
                         Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(i).getItemStack(), 0, 0, 0));

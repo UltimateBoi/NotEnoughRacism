@@ -3,7 +3,7 @@ import { PREFIX } from "./Constants"
 let GuiButton = Java.type("net.minecraft.client.gui.GuiButton");
 
 let nerImage = new Image("NER", "https://cdn.discordapp.com/attachments/909729021795897396/914209168569823263/ner_nobg_00000.png");
-let backgroundColor = Renderer.color(0, 0, 0, 50);
+let backgroundColor = Renderer.color(0, 0, 0, 150);
 let bigChromaStep = 0;
 let bigChromaSpeed = 10;
 let smallChromaStep = 0;
@@ -38,9 +38,9 @@ class PaddyButton {
         let mx = Client.getMouseX();
         let my = Client.getMouseY();
         if (mx >= this.x && mx <= this.x + this.width && my >= this.y && my <= this.y + this.height) {
-            Renderer.drawRect(Renderer.color(180, 180, 180, 100), this.x, this.y, this.width, this.height);
+            Renderer.drawRect(Renderer.color(180, 180, 180, 120), this.x, this.y, this.width, this.height);
         } else {
-            Renderer.drawRect(Renderer.color(0, 0, 0, 100), this.x, this.y, this.width, this.height);
+            Renderer.drawRect(Renderer.color(0, 0, 0, 120), this.x, this.y, this.width, this.height);
         }
         Renderer.drawString(buttontext, buttonx, buttony);
     }
@@ -52,9 +52,9 @@ class PaddyButton {
         let my = Client.getMouseY();
         let buttontext = new Text(this.text, buttonx, buttony).setColor(Renderer.getRainbow(smallChromaStep, smallChromaSpeed)).draw();
         if (mx >= this.x && mx <= this.x + this.width && my >= this.y && my <= this.y + this.height) {
-            Renderer.drawRect(Renderer.color(180, 180, 180, 100), this.x, this.y, this.width, this.height);
+            Renderer.drawRect(Renderer.color(180, 180, 180, 120), this.x, this.y, this.width, this.height);
         } else {
-            Renderer.drawRect(Renderer.color(0, 0, 0, 100), this.x, this.y, this.width, this.height);
+            Renderer.drawRect(Renderer.color(0, 0, 0, 120), this.x, this.y, this.width, this.height);
         }
     }
 
@@ -71,6 +71,11 @@ register("command", function() {
     configGui.open();
 }).setName("ner");
 
+register("renderCrosshair", (event) => {
+    if (configGui.isOpen()) {
+        cancel(event); 
+    }
+})
 
 register("renderOverlay", function() {
     if (configGui.isOpen()) {
@@ -90,25 +95,19 @@ register("renderCrosshair", (event) => {
 register("renderOverlay", function() {
     if (configGui.isOpen()) {
         Renderer.drawRect(backgroundColor, 0, 0, Renderer.screen.getWidth(), Renderer.screen.getHeight());
-        dungeonsButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148, Renderer.screen.getHeight() / 2 - 10, 300, 30, "Dungeons");
-        generalButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148, Renderer.screen.getHeight() / 2 + 30, 300, 30, "General");
-        slayerButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148, Renderer.screen.getHeight() / 2 + 70, 300, 30, "Slayers");
-        espButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148, Renderer.screen.getHeight() / 2 + 110, 300, 30, "ESP");
-     //   dungeonScannerButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 220, Renderer.screen.getHeight() / 2 + 50, 200, 20, "Dungeon Scanner");
-        macrosButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148 , Renderer.screen.getHeight() / 2 + 150, 300, 30, "Macros");
+        generalButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148, Renderer.screen.getHeight() / 2 - 10, 300, 30, "General QOL");
+        dungeonsButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148, Renderer.screen.getHeight() / 2 + 30, 300, 30, "Dungeons");
+        espButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148, Renderer.screen.getHeight() / 2 + 70, 300, 30, "ESP");
+        macrosButton = new PaddyButton(Renderer.screen.getWidth() / 2 - 148 , Renderer.screen.getHeight() / 2 + 110, 300, 30, "Macros");
         if (config.guibuttonstyle === 0) {
             dungeonsButton.drawChromaButton();
             generalButton.drawChromaButton();
-            slayerButton.drawChromaButton();
             espButton.drawChromaButton();
-         //   dungeonScannerButton.drawChromaButton();
             macrosButton.drawChromaButton();
         } else if (config.guibuttonstyle === 1) {
             dungeonsButton.drawButton();
             generalButton.drawButton();
-            slayerButton.drawButton();
             espButton.drawButton();
-        //    dungeonScannerButton.drawButton();
             macrosButton.drawButton();
         }
 
@@ -125,15 +124,9 @@ register("guiMouseClick", function(x, y, button, state) {
         if (generalButton.isMouseOver()) {
             ChatLib.command("nergeneral", true)
         }
-        if (slayerButton.isMouseOver()) {
-            ChatLib.command("nerslayer", true)
-        }
         if (espButton.isMouseOver()) {
             ChatLib.command("neresp", true)
         }
-        // if (dungeonScannerButton.isMouseOver()) {
-        //     ChatLib.command("nermapscanner", true)
-        // }
         if (macrosButton.isMouseOver()) {
             ChatLib.command("nermacros", true)
         }
@@ -144,8 +137,8 @@ register("guiMouseClick", function(x, y, button, state) {
             ChatLib.chat("")
             ChatLib.chat("&b----------------------------------------------------")
             ChatLib.chat(PREFIX + "&bDungeon Extras&r: Dungeons ESP")
-            ChatLib.chat(PREFIX + "&bAlon&r: Block Sword Animations")
-            ChatLib.chat(PREFIX + "&bAnonymous&r: Dungeon Map Scanner")
+            ChatLib.chat(PREFIX + "&bAlon&r: Auto Mort, Auto Salvage and Auto Combine")
+          //  ChatLib.chat(PREFIX + "&bAnonymous&r: Dungeon Map Scanner")
             ChatLib.chat("&b----------------------------------------------------")
         }
     }

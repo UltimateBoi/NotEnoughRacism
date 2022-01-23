@@ -18,14 +18,14 @@ import {
 
 const endStoneSwordtoKatana = () => {
     for (let i = 0; i < 9; i++) {
-        if (Player.getInventory().getStackInSlot(i).getName().removeFormatting().toLowerCase().includes("end stone")) {
+        if (Player.getInventory().getStackInSlot(i) !== null && Player.getInventory().getStackInSlot(i).getName().removeFormatting().toLowerCase().includes("end stone")) {
             Client.sendPacket(new C09PacketHeldItemChange(i));
             Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(i).getItemStack(), 0, 0, 0));
             break;
         }
     }
     for (let i = 0; i < 9; i++) {
-        if (Player.getInventory().getStackInSlot(i).getName().removeFormatting().toLowerCase().includes("katana")) {
+        if (Player.getInventory().getStackInSlot(i) !== null && Player.getInventory().getStackInSlot(i).getName().removeFormatting().toLowerCase().includes("katana")) {
             Client.sendPacket(new C09PacketHeldItemChange(i));
             Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(i).getItemStack(), 0, 0, 0)); 
             break;

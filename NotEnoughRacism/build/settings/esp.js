@@ -41,115 +41,66 @@ class ESP {
     })
     espRefreshRate = 2;
 
-    //---------------------------------------------------------------------------------------------------
-
     @SwitchProperty({
-        name: "Show nametag",
+        name: "Show Miniboss Nametag",
         description: "Shows nametags through walls",
         category: "Miniboss ESP",
         //  subcategory: "Miniboss ESP"
     }) showMiniNametags = false;
 
     @SwitchProperty({
-        name: "Show hitbox",
+        name: "Show Miniboss Hitbox",
         description: "Shows hitboxes",
         category: "Miniboss ESP",
         //    subcategory: "Miniboss ESP"
     }) showMiniHitboxes = false;
 
-    @SwitchProperty({
-        name: "Through walls",
-        description: "Shows hitboxes through walls",
-        category: "Miniboss ESP",
-        //   subcategory: "Miniboss ESP"
-    }) showMiniThroughWalls = false;
 
     @ColorProperty({
-        name: "Hitbox Color",
+        name: "Miniboss Hitbox Color",
         description: "",
         category: "Miniboss ESP",
         //  subcategory: "Miniboss ESP"
     }) miniHitboxColor = Color.RED;
 
-    @SliderProperty({
-        name: 'Max distance',
-        description: 'Max distance to draw hitboxes/names',
-        category: 'Miniboss ESP',
-        // subcategory: "Miniboss ESP",
-        min: 1,
-        max: 50
-    }) maxMiniDistance = 50;
-
-    //---------------------------------------------------------------------------------------------------
-
     @SwitchProperty({
-        name: "Show nametag",
+        name: "Show Star Mob Nametag",
         description: "Shows nametags through walls",
         category: "Star Mob ESP",
         //  subcategory: "ESP"
     }) showStarNametags = false;
 
     @SwitchProperty({
-        name: "Show hitbox",
+        name: "Show Star Mob Hitbox",
         description: "Shows hitboxes",
         category: "Star Mob ESP",
         // subcategory: "ESP"
     }) showStarHitboxes = false;
 
-    @SwitchProperty({
-        name: "Through walls",
-        description: "Shows hitboxes through walls",
-        category: "Star Mob ESP",
-        //  subcategory: "ESP"
-    }) showStarThroughWalls = false;
 
     @ColorProperty({
-        name: "Hitbox Color",
+        name: "Star Mob Hitbox Color",
         description: "",
         category: "Star Mob ESP",
         // subcategory: "ESP"
     }) starHitboxColor = Color.RED;
 
-    @SliderProperty({
-        name: 'Max distance',
-        description: 'Max distance to draw hitboxes/names',
-        category: 'Star Mob ESP',
-        //subcategory: "ESP",
-        min: 1,
-        max: 50
-    }) maxStarDistance = 50;
-
-    //---------------------------------------------------------------------------------------------------
 
     @SwitchProperty({
-        name: "Show hitbox",
+        name: "Show Bat Hitbox",
         description: "Shows hitboxes",
         category: "Bat ESP",
         // subcategory: "ESP"
     }) showBatHitboxes = false;
 
-    @SwitchProperty({
-        name: "Through walls",
-        description: "Shows hitboxes through walls",
-        category: "Bat ESP",
-        // subcategory: "ESP"
-    }) showBatThroughWalls = false;
 
     @ColorProperty({
-        name: "Hitbox Color",
+        name: "Bat Hitbox Color",
         description: "",
         category: "Bat ESP",
         // subcategory: "ESP"
     }) batHitboxColor = Color.RED;
 
-    @SliderProperty({
-        name: 'Max distance',
-        description: 'Max distance to draw hitboxes',
-        category: 'Bat ESP',
-        //subcategory: "ESP",
-        min: 1,
-        max: 50
-    }) maxBatDistance = 50;
 
     @SwitchProperty({
         name: "Wither/Blood Key ESP",
@@ -164,24 +115,6 @@ class ESP {
         category: "Key ESP",
         subcategory: "Key ESP"
     }) witherKeyColor = Color.RED
-
-    // @SwitchProperty({
-    //     name: "Blood Key ESP",
-    //     description: "Enables Blood Key ESP",
-    //     category: "Key ESP",
-    //     subcategory: "Blood Key ESP"
-    // }) bloodKey = false;
-
-    // @ColorProperty({
-    //     name: "Blood Key ESP Color",
-    //     description: "Changes the color for Blood Key ESP",
-    //     category: "Key ESP",
-    //     subcategory: "Blood Key ESP"
-    // }) bloodKeyColor = Color.RED
-
-    //---------------------------------------------------------------------------------------------------
-    //---------------------------------------------------------------------------------------------------
-    //---------------------------------------------------------------------------------------------------
 
     @SwitchProperty({
         name: "Sneaky Creeper ESP",
@@ -199,7 +132,6 @@ class ESP {
         subcategory: "Sneaky Creeper ESP"
     }) creeperESPColor = Color.GREEN;
 
-    //---------------------------------------------------------------------------------------------------
 
     @SwitchProperty({
         name: "Arachne Keeper ESP",
@@ -215,76 +147,229 @@ class ESP {
         subcategory: "Arachne Keeper ESP"
     }) arachneKeeperESPColor = Color.GREEN;
 
-    //---------------------------------------------------------------------------------------------------
-
-    // @SwitchProperty({
-    //     name: "Endstone Protector ESP",
-    //     description: "Enables Endstone Protector ESP",
-    //     category: "Endstone Protector ESP",
-    //     // subcategory: "ESP"
-    // }) ironGolemESP = false;
-
-
-
-    // @ColorProperty({
-    //     name: "Endstone Protector ESP Color",
-    //     description: "Changes the Highlight Color for Endstone Protectors",
-    //     category: "Endstone Protector ESP",
-    //     // subcategory: "End Island ESP"
-    // }) ironGolemESPColor = Color.RED
-
-    //---------------------------------------------------------------------------------------------------
 
     @SwitchProperty({
         name: "Pelt Animal ESP",
         description: "Enables Pelt Animal ESP",
-        category: "Misc ESP",
+        category: "Pelt ESP",
         subcategory: "Pelt ESP"
     }) peltESP = false;
 
     @ColorProperty({
         name: "Pelt Animal ESP Color",
         description: "Changes the Highlight color for Pelt Animals",
-        category: "Misc ESP",
+        category: "Pelt ESP",
         subcategory: "Pelt ESP"
     }) peltESPColor = Color.RED
 
+    @TextProperty({
+        name: "Player ESP IGN",
+        category: "Player ESP",
+        subcategory: "Player ESP"
+    }) playerESPName = ""
+
+    @ColorProperty({
+        name: "Player ESP Color",
+        description: "Sets the Highlight Color for Players",
+        category: "Player ESP",
+        subcategory: "Player ESP"
+    }) playerColor = Color.RED
+
+    @SwitchProperty({
+        name: "Tarantula Miniboss ESP",
+        description: "Enables Tarantula Miniboss ESP",
+        category: "Tarantula Broodfathers",
+        subcategory: "Miniboss"
+    }) taraMinis = false;
+
+    @SwitchProperty({
+        name: "Tarantula Boss ESP",
+        description: "Enables Tarantula Boss ESP",
+        category: "Tarantula Broodfathers",
+        subcategory: "Boss"
+    }) taraBoss = false;
+
+    @ColorProperty({
+        name: "Tarantula Vermin/Beast Color",
+        description: "Sets Tarantula Vermin/Beast ESP Color",
+        category: "Tarantula Broodfathers",
+        subcategory: "Miniboss"
+    }) taraBeast = Color.GREEN
+
+    @ColorProperty({
+        name: "Mutant Tarantula Color",
+        description: "Sets Mutant Tarantula ESP Color",
+        category: "Tarantula Broodfathers",
+        subcategory: "Miniboss"
+    }) mutantTara = Color.RED
+
+    @ColorProperty({
+        name: "Tarantula Boss Color",
+        description: "Sets Tarantula Boss ESP Color",
+        category: "Tarantula Broodfathers",
+        subcategory: "Boss"
+    }) taraBossColor = Color.BLUE
+
     //---------------------------------------------------------------------------------------------------
 
-    // @SwitchProperty({
-    //     name: "Island Witch ESP",
-    //     description: "Enables Island Witch ESP",
-    //     category: "Misc ESP",
-    //     subcategory: "Island Witch ESP"
-    // }) islandWitchESP = false;
+    @SwitchProperty({
+        name: "Sven Miniboss ESP",
+        description: "Enables Sven Miniboss ESP",
+        category: "Sven Packmasters",
+        subcategory: "Miniboss"
+    }) svenMinis = false;
 
-    // @ColorProperty({
-    //     name: "Island Witch ESP Color",
-    //     description: "Changes the Highlight Color for Island Witches",
-    //     category: "Misc ESP",
-    //     subcategory: "Island Witch ESP"
-    // }) islandWitchESPColor = Color.RED
+    @SwitchProperty({
+        name: "Sven Boss ESP",
+        description: "Enables Sven Boss ESP",
+        category: "Sven Packmasters",
+        subcategory: "Boss"
+    }) svenBoss = false;
 
+    @ColorProperty({
+        name: "Sven Pack Enforcer/Follower Color",
+        description: "Sets Sven Pack Enforcer/Follower Color ESP Color",
+        category: "Sven Packmasters",
+        subcategory: "Miniboss"
+    }) svenFollower = Color.GREEN
 
-    // @SwitchProperty({
-    //     name: "Gemstone ESP Toggle",
-    //     description: "Click the switch to the right to toggle the Gemstone ESP module.\nGemstone ESP highlights most types of gemstones, as well as chests",
-    //     category: "Gemstone ESP",
-    //     subcategory: "Toggle"
-    // })
-    // gemstoneESPToggle = false;
+    @ColorProperty({
+        name: "Sven Alpha Color",
+        description: "Sets Sven Alpha ESP Color",
+        category: "Sven Packmasters",
+        subcategory: "Miniboss"
+    }) svenAlpha = Color.RED
 
-    // @SelectorProperty({
-    //     name: "Gemstone ESP box style",
-    //     description: "Click the arrow to select the style you want the esp boxes to have.",
-    //     category: "Gemstone ESP",
-    //     subcategory: "Type",
-    //     options: ['Full boxes', 'Small boxes']
-    // })
-    // gemstoneBoxStyle = 0;
+    @ColorProperty({
+        name: "Sven Boss Color",
+        description: "Sets Sven Boss ESP Color",
+        category: "Sven Packmasters",
+        subcategory: "Boss"
+    }) svenBossColor = Color.BLUE
+
+    //---------------------------------------------------------------------------------------------------
+
+    @SwitchProperty({
+        name: "Revenant Miniboss ESP",
+        description: "Enables Revenant Miniboss ESP",
+        category: "Revenant Horror",
+        subcategory: "Miniboss"
+    }) revMinis = false;
+
+    @SwitchProperty({
+        name: "Revenant Boss ESP",
+        description: "Enables Revenant Boss ESP",
+        category: "Revenant Horror",
+        subcategory: "Boss"
+    }) revBoss = false;
+
+    @ColorProperty({
+        name: "Revenant Color",
+        description: "Sets Revenant Miniboss Color ESP Color",
+        category: "Revenant Horror",
+        subcategory: "Miniboss"
+    }) revMiniColor = Color.GREEN
+
+    @ColorProperty({
+        name: "Atoned Revenant Miniboss Color",
+        description: "Sets Atoned Revenant Miniboss ESP Color",
+        category: "Revenant Horror",
+        subcategory: "Miniboss"
+    }) atonedMini = Color.RED
+
+    @ColorProperty({
+        name: "Revenant Boss Color",
+        description: "Sets Revenant Boss ESP Color",
+        category: "Revenant Horror",
+        subcategory: "Boss"
+    }) revBossColor = Color.BLUE
+
+    //---------------------------------------------------------------------------------------------------
+
+    @SwitchProperty({
+        name: "Voidgloom Miniboss ESP",
+        description: "Enabled Voidgloom Miniboss ESP",
+        category: "Voidgloom Seraph",
+        subcategory: "Miniboss"
+    }) voidgloomMinis = false;
+
+    @ColorProperty({
+        name: "Voidling Devotee/Radical ESP Color",
+        description: "Sets Voidling Devotee/Radical ESP Color",
+        category: "Voidgloom Seraph",
+        subcategory: "Miniboss"
+    }) voidlingRadi = Color.GREEN
+
+    @ColorProperty({
+        name: "Voidcrazed Maniac ESP Color",
+        description: "Sets Voidcrazed Maniac ESP Color",
+        category: "Voidgloom Seraph",
+        subcategory: "Miniboss"
+    }) voidcrazedManiac = Color.RED
+
 
     constructor() {
         this.initialize(this);
+        this.addDependency("Voidcrazed Maniac ESP Color", "Enable");
+        this.addDependency("Voidling Devotee/Radical ESP Color", "Enable");
+        this.addDependency("Voidgloom Miniboss ESP", "Enable");
+        this.addDependency("Revenant Boss Color", "Enable");
+        this.addDependency("Atoned Revenant Miniboss Color", "Enable");
+        this.addDependency("Revenant Color", "Enable");
+        this.addDependency("Revenant Boss ESP", "Enable");
+        this.addDependency("ESP Refresh Rate", "Enable");
+        this.addDependency("Show Miniboss Nametag", "Enable");
+        this.addDependency("Show Miniboss Hitbox", "Enable");
+        this.addDependency("Miniboss Hitbox Color", "Enable");
+        this.addDependency("Show Star Mob Nametag", "Enable");
+        this.addDependency("Show Star Mob Hitbox", "Enable");
+        this.addDependency("Star Mob Hitbox Color", "Enable");
+        this.addDependency("Show Bat Hitbox", "Enable");
+        this.addDependency("Bat Hitbox Color", "Enable");
+        this.addDependency("Wither/Blood Key ESP", "Enable");
+        this.addDependency("Wither/Blood Key ESP Color", "Enable");
+        this.addDependency("Arachne Keeper ESP", "Enable");
+        this.addDependency("Arachne Keeper ESP Color", "Enable");
+        this.addDependency("Sneaky Creeper ESP", "Enable");
+        this.addDependency("Sneaky Creeper ESP Color", "Enable");
+        this.addDependency("Pelt Animal ESP", "Enable");
+        this.addDependency("Pelt Animal ESP Color", "Enable");
+        this.addDependency("Player ESP IGN", "Enable");
+        this.addDependency("Player ESP Color", "Enable");
+        this.addDependency("Tarantula Boss ESP", "Enable");
+        this.addDependency("Tarantula Boss Color", "Enable");
+        this.addDependency("Tarantula Miniboss ESP", "Enable");
+        this.addDependency("Tarantula Vermin/Beast Color", "Enable");
+        this.addDependency("Mutant Tarantula Color", "Enable");
+        this.addDependency("Sven Boss ESP", "Enable");
+        this.addDependency("Sven Boss Color", "Enable");
+        this.addDependency("Sven Miniboss ESP", "Enable");
+        this.addDependency("Sven Pack Enforcer/Follower Color", "Enable");
+        this.addDependency("Sven Alpha Color", "Enable");
+        this.addDependency("Revenant Miniboss ESP", "Enable");
+        this.addDependency("Revenant Color", "Enable");
+
+        // -----------------------------------------------------------
+
+        this.addDependency("Voidcrazed Maniac ESP Color", "Voidgloom Miniboss ESP");
+        this.addDependency("Voidling Devotee/Radical ESP Color", "Voidgloom Miniboss ESP");
+        this.addDependency("Revenant Color", "Revenant Miniboss ESP");
+        this.addDependency("Atoned Revenant Miniboss Color", "Revenant Miniboss ESP");
+        this.addDependency("Revenant Boss Color", "Revenant Boss ESP");
+        this.addDependency("Miniboss Hitbox Color", "Show Miniboss Hitbox");
+        this.addDependency("Star Mob Hitbox Color", "Show Star Mob Hitbox");
+        this.addDependency("Bat Hitbox Color", "Show Bat Hitbox");
+        this.addDependency("Wither/Blood Key ESP Color", "Wither/Blood Key ESP");
+        this.addDependency("Arachne Keeper ESP Color", "Arachne Keeper ESP");
+        this.addDependency("Sneaky Creeper ESP Color", "Sneaky Creeper ESP");
+        this.addDependency("Pelt Animal ESP Color", "Pelt Animal ESP");
+        this.addDependency("Tarantula Boss Color", "Tarantula Boss ESP");
+        this.addDependency("Tarantula Vermin/Beast Color", "Tarantula Miniboss ESP");
+        this.addDependency("Mutant Tarantula Color", "Tarantula Miniboss ESP");
+        this.addDependency("Sven Boss Color", "Sven Boss ESP");
+        this.addDependency("Sven Pack Enforcer/Follower Color", "Sven Miniboss ESP");
+        this.addDependency("Sven Alpha Color", "Sven Miniboss ESP");
     }
+
 }
 export default new ESP;

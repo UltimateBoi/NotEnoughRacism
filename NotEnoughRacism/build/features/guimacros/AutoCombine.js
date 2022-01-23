@@ -5,11 +5,11 @@ const autoCombine = () => {
         if (Player.getOpenedInventory() === null)
             return;
         if (Player.getOpenedInventory().getName().includes("Anvil")) {
-            if (Player.getOpenedInventory().getStackInSlot(29).getName() === "tile.air.name" && Player.getOpenedInventory().getStackInSlot(33).getName() === "tile.air.name") {
+            if (Player.getOpenedInventory().getStackInSlot(29) === null && Player.getOpenedInventory().getStackInSlot(33) === null) {
                 let bookArr = [];
                 for (let i = Player.getOpenedInventory().getItems().length - 1; i > Player.getOpenedInventory().getItems().length - Player.getInventory().getItems().length; i--) {
                     let item = Player.getOpenedInventory().getStackInSlot(i);
-                    if (item.getUnlocalizedName() === "item.enchantedBook") {
+                    if (item !== null && item.getUnlocalizedName() === "item.enchantedBook") {
                         bookArr.push(i);
                     }
                 }
@@ -28,7 +28,7 @@ const autoCombine = () => {
                             if (Player.getOpenedInventory().getStackInSlot(22) === null)
                                 return;
                             new Thread(() => {
-                                while (Player.getOpenedInventory().getStackInSlot(22).getLore()[5] !== "§5§o§30 Exp Levels") {
+                                while (Player.getOpenedInventory().getStackInSlot(22) !== null && Player.getOpenedInventory().getStackInSlot(22).getLore()[5] !== "§5§o§30 Exp Levels") {
                                     Thread.sleep(50);
                                     k++;
                                     if (k > 100) {
@@ -44,9 +44,7 @@ const autoCombine = () => {
                 }
             }
         }
-    } catch (e) {
-       // print(e.message);
-    }
+    } catch (e) {  }
 }
 
 export { autoCombine };

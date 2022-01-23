@@ -2,9 +2,9 @@
 /// <reference lib="esnext" />
 
 import {
-    @ButtonProperty,
+@ButtonProperty,
 Color,
-    @ColorProperty,
+@ColorProperty,
 @PercentSliderProperty,
 @SelectorProperty,
 @TextProperty,
@@ -23,17 +23,6 @@ Color,
     }
 })
 class Dungeons {
-
-
-    @SelectorProperty({
-        name: "Ghost Block Mode",
-        description: "The ghost blocking mode.\n&8- Legit requires a Stonk in your hotbar and only works on blocks that a Stonk can insta break",
-        category: "Ghost Blocks",
-        subcategory: "Ghost Blocks",
-        options: ["Normal", "Legit"]
-    })
-    ghostBlockMode = 0;
-
 
     @SwitchProperty({
         name: "Coordinate Ghost Blocks",
@@ -56,8 +45,6 @@ class Dungeons {
         subcategory: "Ghost Blocks",
         options: ["Right Click", "Left Click"]
     }) stonkGBType = 0;
-
-    //---------------------------------------------------------------------------------------------------
 
     @SwitchProperty({
         name: "Auto Spirit Leap",
@@ -114,103 +101,6 @@ class Dungeons {
     })
     buggedChunkLeapTime = 17;
 
-    //---------------------------------------------------------------------------------------------------
-
-    // @SwitchProperty({
-    //     name: "Block Sword Animation",
-    //     description: "Blocks the right click animation for some swords",
-    //     category: "Block Sword Animation",
-    //     subcategory: "Block Sword Animation"
-    // }) blockSword = false;
-
-
-    // @ParagraphProperty({
-    //     name: "Block Sword Animation Swords",
-    //     description: 'Edit which swords animations are blocked\n&8- For swords like "End Stone Sword", you need to enter "end stone" (basically remove "sword")\n&8- Use a "," to split items',
-    //     category: "Block Sword Animation",
-    //     subcategory: "Block Sword Animation"
-
-    // })
-    // blockedSwords = "Hyperion, Scylla, Valkyrie, Astraea, Rogue, Aspect of the End"
-
-    //---------------------------------------------------------------------------------------------------
-
-    @SwitchProperty({
-        name: "Reveal Hidden Fels",
-        description: "Reveals Hidden Fels",
-        category: "QOL",
-        subcategory: "Entities"
-    })
-    hiddenFels = false;
-
-    @SwitchProperty({
-        name: "Revels Hidden Shadow Assassins",
-        description: "Reveals Hidden Shadow Assassins",
-        category: "QOL",
-        subcategory: "Entities"
-    })
-    hiddenSA = false;
-
-    @SwitchProperty({
-        name: "Reveal Hidden Blood Mobs",
-        description: "Reveals Stealthy Blood Mobs",
-        category: "QOL",
-        subcategory: "Entities"
-    })
-    hiddenBloodMobs = false;
-
-    // @SwitchProperty({
-    //     name: "Hide Non Starred Mobs Name Tags",
-    //     category: "QOL",
-    //     subcategory: "Entities"
-    // })
-    // nonStarMobsTags = false;
-
-    // @SwitchProperty({
-    //     name: "Hide Terracota Name Tags",
-    //     category: "QOL",
-    //     subcategory: "Entities"
-    // })
-    // terraNameTags = false;
-
-    @SwitchProperty({
-        name: "Auto Close Chests",
-        description: "Auto closes the Chest GUI",
-        category: "QOL",
-        subcategory: "QOL"
-    })
-    autoCloseSecretChests = false;
-
-    @SwitchProperty({
-        name: "Hit through Wither Cloak Creepers",
-        category: "QOL",
-        subcategory: "Entities"
-    })
-    creeperGhostArm = false;
-
-    // @SwitchProperty({
-    //     name: "Spirit Bear Aimbot",
-    //     description: "Auto Looks at the Spirit Bear and Left Clicks",
-    //     category: "QOL",
-    //     subcategory: "Spirit Bear"
-    // })
-    // spiritBearAura = false;
-    //---------------------------------------------------------------------------------------------------
-
-    @SwitchProperty({
-        name: "Block Giant Sword Right Click",
-        category: "Block Clicks",
-        subcategory: "Block Clicks"
-    })
-    gsBlock = false;
-
-    @SwitchProperty({
-        name: "Block Cells Allignment",
-        category: "Block Clicks",
-        subcategory: "Block Clicks"
-    })
-    gyroBlock = false;
-    //---------------------------------------------------------------------------------------------------
 
     @SliderProperty({
         name: "Auto Sell Delay",
@@ -230,13 +120,6 @@ class Dungeons {
     })
     dungSellList = ""
 
-    // @ParagraphProperty({
-    //     name: "Enchanted Books to Sell",
-    //     description: "Set which enchanted books are sold\n&8- Seperate books with a ,",
-    //     category: "Macros",
-    //     subcategory: "Auto Sell"
-    // })
-    // bookSellList = ""
 
     @ButtonProperty({
         name: "Default Items",
@@ -247,16 +130,6 @@ class Dungeons {
     DefaultSellItems() {
         ChatLib.command("dungitems", true)
     }
-
-    // @SliderProperty({
-    //     name: "Auto Rogue Speed",
-    //     description: "Set the speed you want Auto Rogue to click till\n&8- Only set it in multiples of 10",
-    //     category: "Macros",
-    //     subcategory: "Auto Rogue",
-    //     min: "0",
-    //     max: "500"
-    // })
-    // autoRogueSpeed = 500;
 
     @SliderProperty({
         name: "Auto Rogue Clicks",
@@ -278,65 +151,31 @@ class Dungeons {
     })
     autoRogueCD = 30;
 
-    // @SwitchProperty({
-    //     name: "Disable Auto Rogue in a GUI",
-    //     description: "Disabled Auto Rogue when opening a GUI/Chat",
-    //     category: "Macros",
-    //     subcategory: "Auto Rogue"
-    // })
-    // autoRogueGUI = false;
+    @SwitchProperty({
+        name: "Secret Aura",
+        description: "This is an alternative toggle to using the keybind found in your minecraft controls settings",
+        category: "Secret Aura",
+        subcategory: ""
+    })
+    secretAuraToggle = false;
 
-    // @SwitchProperty({
-    //     name: "Rabbit Hat Swap",
-    //     category: "Macros",
-    //     subcategory: "Rabbit Hat"
-    // })
-    // rabbitHat = false;
+    @SliderProperty({
+        name: "Secret Aura Reach",
+        description: "Set the maximum reach of the secret aura",
+        category: "Secret Aura",
+        subcategory: "",
+        min: 1,
+        max: 6
+    })
+    auraReach = 5;
 
-    // @ParagraphProperty({
-    //     name: "Helmets to swap",
-    //     description: "Set which helmets are swapped with Rabbit Hat\n&8- Seperate each with a ,",
-    //     category: "Macros",
-    //     subcategory: "Rabbit Hat"
-    // })
-    // rabHatHelmets = "Wither Goggles, Diamond Necron Head"
-    //     //---------------------------------------------------------------------------------------------------
-
-    // @SwitchProperty({
-    //     name: "Toggle Secret Aura",
-    //     description: "This is an alternative toggle to using the keybind found in your minecraft controls settings",
-    //     category: "Secret Aura",
-    //     subcategory: ""
-    // })
-    // secretAuraToggle = false;
-
-    // @SliderProperty({
-    //     name: "Secret Aura Reach",
-    //     description: "Set the maximum reach of the secret aura",
-    //     category: "Secret Aura",
-    //     subcategory: "",
-    //     min: 1,
-    //     max: 6
-    // })
-    // auraReach = 5;
-
-    // @TextProperty({
-    //     name: "Secret Aura Item",
-    //     description: "Choose which item you want to use to click the secret",
-    //     category: "Secret Aura",
-    //     subcategory: ""
-    // })
-    // auraHeldItem = "Rogue Sword";
-
-
-    // @SwitchProperty({
-    //     name: "Crystal Reach",
-    //     description:"",
-    //     category: "Simon Says",
-    //     subcategory: "Crystal Aura"
-    // })
-    // crystalAura = false;
-
+    @TextProperty({
+        name: "Secret Aura Item",
+        description: "Choose which item you want to use to click the secret",
+        category: "Secret Aura",
+        subcategory: ""
+    })
+    auraHeldItem = "Rogue Sword";
 
     @SwitchProperty({
         name: "Auto Simon Says",
@@ -356,7 +195,7 @@ class Dungeons {
     autoSSType = 0;
 
     @SliderProperty({
-        name: "Auto Simons Says CPS",
+        name: "Auto Simon Says CPS",
         description: "Default is 100",
         category: "Simon Says",
         subcategory: "Auto Simon Says",
@@ -376,23 +215,45 @@ class Dungeons {
     autoSSReach = 6;
 
     // @SwitchProperty({
-    //     name: "Lights Aura",
-    //     category: "Simon Says",
-    //     subcategory: "Lights Aura"
+    //     name: "Stonkless Stonk",
+    //     description: "Secret Aura but requires a click on the ESP Box\n&8- Idea taken from Shady Addons",
+    //     category: "Stonkless Stonk",
+    //     subcategory: "Stonkless Stonk"
     // })
-    // lightsaAura = false;
+    // stonklessStonk = false; 
 
+    // @CheckboxProperty({
+    //     name: "Disable in Boss",
+    //     category: "Stonkless Stonk",
+    //     subcategory: "Stonkless Stonk"
+    // })
+    // disableStonklessInBoss = false;
+    
     // @SliderProperty({
-    //     name: "Lights Aura Reach",
-    //     category: "Simon Says",
-    //     subcategory: "Lights Aura",
+    //     name: "Stonkless Stonk Reach",
+    //     category: "Stonkless Stonk",
+    //     subcategory: "Stonkless Stonk",
     //     min: 0,
     //     max: 6
     // })
-    // lightsAuraReach = 0;
+    // stonklessStonkReach = 6;
+
+
 
     constructor() {
         this.initialize(this);
+        this.addDependency("Secret Aura Reach", "Secret Aura");
+        this.addDependency("Secret Aura Item", "Secret Aura");
+        this.addDependency("Leap Name", "Auto Spirit Leap");
+        this.addDependency("Bugged Chunk Leap Name", "Bugged Chunk Leap");
+        this.addDependency("Bugged Chunk Leap Delay", "Bugged Chunk Leap");
+        this.addDependency("S1 Leap Name", "Auto Leap in Terms");
+        this.addDependency("Stonk Ghost Block Click", "Stonk Ghost Blocks");
+        this.addDependency("Auto Simon Says Type", "Auto Simon Says");
+        this.addDependency("Auto Simon Says CPS", "Auto Simon Says");
+        this.addDependency("Auto Simon Says Reach", "Auto Simon Says");
+        // this.addDependency("Stonkless Stonk Reach", "Stonkless Stonk");
+        // this.addDependency("Disable in Boss", "Stonkless Stonk");
     }
 }
 export default new Dungeons;

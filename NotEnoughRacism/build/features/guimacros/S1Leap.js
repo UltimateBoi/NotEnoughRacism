@@ -1,5 +1,5 @@
 import { dungeons } from "../..";
-
+import { RightClick } from "../../utils/Utils"; 
 let s1Done = false;
 let inLeapMenu = false;
 let leapPossible = true;
@@ -12,7 +12,7 @@ let bloodOpened = false;
 
 register("chat", () => {
     inBoss = true;
-}).setChatCriteria("&r&4[BOSS] Necron&r&c: &r&cFinally, I heard so much about you. The Eye likes you very much.&r");
+}).setChatCriteria("&r&4[BOSS] Necron&r&c: &r&cFinally, I heard so much about you. The Eye likes you very much.&r").setContains();
 
 register("chat", () => {
     p3Started = true;
@@ -38,9 +38,9 @@ register("tick", () => {
 })
 const s1LeapTick = () => {
     if (Client.currentGui.get() === null) {
-        if (s1Done && leapPossible) {
+        if (s1Done && leapPossible && inBoss && p3Started) {
             Player.getOpenedInventory().getItems().slice(36, 45).forEach((item, index) => {
-                if (item.getName().includes("Spirit Leap")) {
+                if (item !== null && item.getName().includes("Spirit Leap")) {
                     spiritSlot = index;
                 }
             })
@@ -57,7 +57,7 @@ const s1LeapGUI = () => {
             let inv = Player.getOpenedInventory();
             for (let i = 0; i < 45; i++) {
                 let item = inv.getStackInSlot(i);
-                if (item.getName().toLowerCase().includes(String(dungeons.s1LeapName))) {
+                if (item !== null && item.getName().toLowerCase().includes(String(dungeons.s1LeapName))) {
                     let action = Action.of(inv, i, "CLICK");
                     action.setClickString("MIDDLE");
                     action.complete();
@@ -80,3 +80,5 @@ register("worldLoad", () => {
     p3Started = false;
     bloodOpened = false;
 })
+
+export { s1LeapTick, s1LeapGUI }; 

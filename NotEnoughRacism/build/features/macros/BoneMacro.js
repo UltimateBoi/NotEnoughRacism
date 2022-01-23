@@ -28,7 +28,7 @@ const boneMacros = () => {
         }
         let noGiants = true
         for (let i = 0; i < 9; i++) {
-            if (Player.getInventory().getStackInSlot(i).getName().includes(macros.swapSlot1)) {
+            if (Player.getInventory().getStackInSlot(i) !== null && Player.getInventory().getStackInSlot(i).getName().includes(macros.swapSlot1)) {
                 Player.getPlayer().field_71071_by.field_70461_c = i
                 noGiants = false
                 Thread.sleep(macros.swapDelay)
@@ -36,7 +36,7 @@ const boneMacros = () => {
             }
         }
         for (let i = 0; i < 9; i++) {
-            if (Player.getInventory().getStackInSlot(i).getName().includes(macros.swapSlot2)) {
+            if (Player.getInventory().getStackInSlot(i) !== null && Player.getInventory().getStackInSlot(i).getName().includes(macros.swapSlot2)) {
                 Player.getPlayer().field_71071_by.field_70461_c = i
                 Thread.sleep(macros.swapDelay)
                 break;
@@ -44,7 +44,7 @@ const boneMacros = () => {
         }
 
         for (let i = 0; i < 9; i++) {
-            if (Player.getInventory().getStackInSlot(i).getName().includes(macros.swapSlot3)) {
+            if (Player.getInventory().getStackInSlot(i) !== null && Player.getInventory().getStackInSlot(i).getName().includes(macros.swapSlot3)) {
                 Player.getPlayer().field_71071_by.field_70461_c = i
                 Thread.sleep(macros.swapDelay)
                 break;

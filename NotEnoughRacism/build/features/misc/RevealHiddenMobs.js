@@ -85,21 +85,21 @@ register("worldLoad", () => {
 const revealHiddenMobs = (mob) => {
     if (mob.getEntity().func_82150_aj()) {
         if (inDungeon) {
-            if (dungeons.hiddenFels) {
+            if (config.hiddenFels) {
                 if (mob.getClassName() === "EntityEnderman") {
                     mob.getEntity().func_82142_c(false);
                 }
             }
-            if (dungeons.hiddenBloodMobs) {
+            if (config.hiddenBloodMobs) {
                 if (mob.getClassName() === "EntityOtherPlayerMP") {
-                    bloodMobs.forEach((mob) => {
-                        if (ChatLib.removeFormatting(mob.getName()).includes(mob)) {
+                    bloodMobs.forEach((bloodMob) => {
+                        if (ChatLib.removeFormatting(mob.getName()).includes(bloodMob)) {
                             mob.getEntity().func_82142_c(false);
                         }
                     })
                 }
             }
-            if (dungeons.hiddenSA) {
+            if (config.hiddenSA) {
                 if (mob.getClassName() === "EntityOtherPlayerMP") {
                     if (ChatLib.removeFormatting(mob.getName()).includes("Shadow Assassin")) {
                         mob.getEntity().func_82142_c(false);

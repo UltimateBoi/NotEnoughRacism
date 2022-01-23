@@ -7,6 +7,7 @@ const CHAT_PREFIX = "⭍NotEnoughRacism: Chat Macros";
 const GUI_PREFIX = "⭍NotEnoughRacism: GUI Macros";
 const ITEM_PREFIX = "⭍NotEnoughRacism: Item Macros";
 const ADVANCE_PREFIX = "⭍NotEnoughRacism: Advance Macros";
+const SPOTIFY_PREFIX = "⭍NotEnoughRacism: Spotify Controls";
 
 const BP = Java.type("net.minecraft.util.BlockPos");
 
@@ -14,20 +15,23 @@ const C08PacketPlayerBlockPlacement = Java.type("net.minecraft.network.play.clie
 const C09PacketHeldItemChange = Java.type("net.minecraft.network.play.client.C09PacketHeldItemChange");
 const C0APacketAnimation = Java.type("net.minecraft.network.play.client.C0APacketAnimation");
 
+
 const playerESP = Java.type("net.minecraft.entity.player.EntityPlayerMP");
 
 const DiscordRPC = Java.type("net.arikia.dev.drpc.DiscordRPC");
 const DiscordEventHandlers = Java.type("net.arikia.dev.drpc.DiscordEventHandlers");
 const DiscordRichPresence = Java.type("net.arikia.dev.drpc.DiscordRichPresence");
 
+
+
 const ghostBlockExclude = [
-	"minecraft:lever",
-	"minecraft:stone_button",
-	"minecraft:chest",
-	"minecraft:trapped_chest",
-	"minecraft:skull",
+    "minecraft:lever",
+    "minecraft:stone_button",
+    "minecraft:chest",
+    "minecraft:trapped_chest",
+    "minecraft:skull",
     "minecraft:command_block"
-]; 
+];
 
 const blockCoords = [
     [275, 220, 231],
@@ -100,19 +104,20 @@ const bloodMobs = [
 
 export {
     mc,
-    PREFIX, 
+    PREFIX,
     BIND_PREFIX,
-    MISC_PREFIX, 
-    CHAT_PREFIX, 
-    GUI_PREFIX, 
-    ITEM_PREFIX, 
+    MISC_PREFIX,
+    CHAT_PREFIX,
+    GUI_PREFIX,
+    ITEM_PREFIX,
     ADVANCE_PREFIX,
-    BP, 
-    C08PacketPlayerBlockPlacement, 
+    SPOTIFY_PREFIX,
+    BP,
+    C08PacketPlayerBlockPlacement,
     C09PacketHeldItemChange,
-    C0APacketAnimation, 
-    playerESP,  
-    DiscordRPC, 
+    C0APacketAnimation,
+    playerESP,
+    DiscordRPC,
     DiscordRichPresence,
     DiscordEventHandlers,
     ghostBlockExclude,
