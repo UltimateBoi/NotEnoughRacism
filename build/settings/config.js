@@ -56,103 +56,103 @@ class Settings {
     })
     rpcEnabled = false;
 
-    @SwitchProperty({
-        name: "Spotify Controller",
-        description: "Toggles Spotify Controls",
-        category: "Spotify",
-        subcategory: "Spotify"
-    })
-    spotifyToggle = false;
+    // @SwitchProperty({
+    //     name: "Spotify Controller",
+    //     description: "Toggles Spotify Controls",
+    //     category: "Spotify",
+    //     subcategory: "Spotify"
+    // })
+    // spotifyToggle = false;
 
-    @SwitchProperty({
-        name: "Render current song",
-        description: "Renders current song on screen",
-        category: "Spotify",
-        subcategory: "Spotify",
-    })
-    renderSong = false;
+    // @SwitchProperty({
+    //     name: "Render current song",
+    //     description: "Renders current song on screen",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    // })
+    // renderSong = false;
 
-    @ButtonProperty({
-        name: "Move Rendered Song",
-        description: "Set the location for the Rendered Song",
-        category: "Spotify",
-        subcategory: "Spotify",
-        placeholder: "Move"
-    })
-    moveSong() {
-        this.moveSongGui.open()
-    }; 
+    // @ButtonProperty({
+    //     name: "Move Rendered Song",
+    //     description: "Set the location for the Rendered Song",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    //     placeholder: "Move"
+    // })
+    // moveSong() {
+    //     this.moveSongGui.open()
+    // }; 
 
-    @ButtonProperty({
-        name: "Link Spotify",
-        description: "Link your Spotify Account",
-        category: "Spotify",
-        subcategory: "Spotify",
-        placeholder: "Link"
-    })
-    linkSpotify() {
-        SpotifyController.initialize();
-    };
+    // @ButtonProperty({
+    //     name: "Link Spotify",
+    //     description: "Link your Spotify Account",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    //     placeholder: "Link"
+    // })
+    // linkSpotify() {
+    //     SpotifyController.initialize();
+    // };
 
-    @SliderProperty({
-        name: "width",
-        category: "Spotify",
-        subcategory: "Spotify",
-        hidden: true,
-        min: 16,
-        max: 1000
-    })
-    spotifyWidth = 16; 
+    // @SliderProperty({
+    //     name: "width",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    //     hidden: true,
+    //     min: 16,
+    //     max: 1000
+    // })
+    // spotifyWidth = 16; 
 
-    @SliderProperty({
-        name: "height",
-        category: "Spotify",
-        subcategory: "Spotify",
-        hidden: true,
-        min: 5,
-        max: 1000
-    })
-    spotifyHeight = 5; 
+    // @SliderProperty({
+    //     name: "height",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    //     hidden: true,
+    //     min: 5,
+    //     max: 1000
+    // })
+    // spotifyHeight = 5; 
 
-    @SliderProperty({
-        name: "spotifyX",
-        category: "Spotify",
-        subcategory: "Spotify",
-        hidden: true,
-        min: 0,
-        max: Renderer.screen.getWidth()
-    })
-    spotifyX = 0; 
+    // @SliderProperty({
+    //     name: "spotifyX",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    //     hidden: true,
+    //     min: 0,
+    //     max: Renderer.screen.getWidth()
+    // })
+    // spotifyX = 0; 
 
-    @SliderProperty({
-        name: "spotifyY",
-        category: "Spotify",
-        subcategory: "Spotify",
-        hidden: true,
-        min: 0,
-        max: Renderer.screen.getHeight()
-    })
-    spotifyY = 0; 
+    // @SliderProperty({
+    //     name: "spotifyY",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    //     hidden: true,
+    //     min: 0,
+    //     max: Renderer.screen.getHeight()
+    // })
+    // spotifyY = 0; 
 
-    @SliderProperty({
-        name: "imgX",
-        category: "Spotify",
-        subcategory: "Spotify",
-        hidden: true,
-        min: 0,
-        max: Renderer.screen.getHeight()
-    })
-    imX = 0; 
+    // @SliderProperty({
+    //     name: "imgX",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    //     hidden: true,
+    //     min: 0,
+    //     max: Renderer.screen.getHeight()
+    // })
+    // imX = 0; 
 
-    @SliderProperty({
-        name: "imgY",
-        category: "Spotify",
-        subcategory: "Spotify",
-        hidden: true,
-        min: 0,
-        max: Renderer.screen.getHeight()
-    })
-    imgY = 0; 
+    // @SliderProperty({
+    //     name: "imgY",
+    //     category: "Spotify",
+    //     subcategory: "Spotify",
+    //     hidden: true,
+    //     min: 0,
+    //     max: Renderer.screen.getHeight()
+    // })
+    // imgY = 0; 
 
     @SwitchProperty({
         name: "Auto Island",

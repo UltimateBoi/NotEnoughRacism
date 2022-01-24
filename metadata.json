@@ -9,6 +9,9 @@
         "Vigilance",
         "RenderLib",
         "request",
-        "Promise"
+        "Promise",
+        "sleep",
+        "axios",
+        "RichPresence"
     ]
 }

@@ -71,6 +71,7 @@ import { tripleSwapClick, tripleSwapStep } from "./features/macros/TripleSwap";
 import { isMouseOver, spotifyGuiScroll, spotifyRenderOverlay } from "./utils/spotifyGui";
 import { inBoss } from "./utils/IslandUtils";
 import { getCorrectLivid } from "./features/misc/LividGhostArm";
+import { rpc } from "../build/features/misc/RichPresence";
 
 const ghostBlockBind = new KeyBind("Ghost Blocks", Keyboard.KEY_NONE, ADVANCE_PREFIX);
 const tradeMacro = new KeyBind("Trade Menu", Keyboard.KEY_NONE, CHAT_PREFIX);
@@ -336,17 +337,17 @@ register("step", () => {
 }).setFps(2);
 
 register("step", () => {
-    // rpc()
+     rpc()
 }).setFps(1)
 
-register("worldLoad", () => {
-    if (SpotifyController.firstInitAttempt === false) {
-        SpotifyController.initialize();
-    }
-})
+// register("worldLoad", () => {
+//     if (SpotifyController.firstInitAttempt === false) {
+//         SpotifyController.initialize();
+//     }
+// })
 
 register("worldUnload", () => {
-    // rpc()
+     rpc()
 })
 
 register("renderEntity", (entity, pos, pticks, event) => {

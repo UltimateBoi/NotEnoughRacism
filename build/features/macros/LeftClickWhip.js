@@ -1,4 +1,5 @@
 import { macros } from "../..";
+import { BP, C08PacketPlayerBlockPlacement, C09PacketHeldItemChange } from "../../utils/Constants";
 
 let swapTime = new Date().getTime()
 
@@ -8,25 +9,25 @@ const leftClickSoulWhip = (button, toggle) => {
             let atomsplitslot;
             let whipslot;
             Player.getOpenedInventory().getItems().slice(36, 45).forEach((item, index) => {
-                if (item.getName().includes(macros.leftClickWhip)) {
+                if (item !== null && item.getName().includes(macros.leftClickWhip)) {
                     atomsplitslot = index;
                 }
-                if (item.getName().includes("Soul Whip")) {
+                if (item !== null && item.getName().includes("Soul Whip")) {
                     whipslot = index;
                 }
             });
             if (new Date().getTime() - swapTime > 500) {
                 if (Player.getHeldItem() !== null) {
                     if (Player.getHeldItem().getName().includes(macros.leftClickWhip)) {
-                        Player.setHeldItemIndex(whipslot);
-                        RightClick.invoke(Client.getMinecraft());
+                        Client.sendPacket(new C09PacketHeldItemChange(whipslot));
+                        Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(whipslot).getItemStack(), 0, 0 ,0))
                         Player.setHeldItemIndex(atomsplitslot);
                         swapTime = new Date().getTime();
                     }
                 }
             }
         }
-    } catch (e) { }
+    } catch (e) { console.error(e.message) }
 }
 
 export { leftClickSoulWhip };

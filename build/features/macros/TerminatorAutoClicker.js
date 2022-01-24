@@ -1,12 +1,12 @@
 import { RightClick } from "../../utils/Utils";
-import { PREFIX } from "../../utils/Constants";
+import { BP, C08PacketPlayerBlockPlacement, PREFIX } from "../../utils/Constants";
 
 const termAC = (toggled) => {
     if (Player.getHeldItem() !== null) {
-        if (Player.getHeldItem().getName().toLowerCase().includes("terminator")) {
+        if (Player.getHeldItem().getName().toLowerCase().includes("artisanal shortbow")) {
             if (toggled) {
                 if (Client.currentGui.get() === null) {
-                    RightClick.invoke(Client.getMinecraft()); 
+                    Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getHeldItem().getItemStack(), 0, 0, 0)) 
                 }
             }
         }

@@ -4,6 +4,7 @@ import {
 import {
     macros
 } from "../../index";
+import { BP, C08PacketPlayerBlockPlacement, C09PacketHeldItemChange } from "../../utils/Constants";
 
 let swap_time = Date.now();
 
@@ -25,15 +26,15 @@ const doublwSwapStep = () => {
             }
         });
         if (Client.currentGui.get() === null) {
-          //  if (Date.now() - swap_time > 500) {
-                Player.setHeldItemIndex(ogSlot);
-                Player.setHeldItemIndex(slot1);
-                RightClick.invoke(Client.getMinecraft());
-                Player.setHeldItemIndex(slot2);
-                RightClick.invoke(Client.getMinecraft());
-                Player.setHeldItemIndex(ogSlot);
-                swap_time = Date.now();
-           // }
+            //  if (Date.now() - swap_time > 500) {
+            Player.setHeldItemIndex(ogSlot);
+            Client.sendPacket(new C09PacketHeldItemChange(slot1));
+            Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(slot1).getItemStack(), 0, 0, 0));
+            Client.sendPacket(new C09PacketHeldItemChange(slot2));
+            Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(slot2).getItemStack(), 0, 0, 0));
+            Player.setHeldItemIndex(ogSlot);
+            swap_time = Date.now();
+            // }
         }
     }
 }
@@ -59,10 +60,10 @@ const doubleSwapClick = (button) => {
                 if (Date.now() - swap_time > 250) {
                     if (Player.getHeldItem() !== null && Player.getHeldItem().getName().includes(macros.swapMacroName)) {
                         Player.setHeldItemIndex(ogSlot);
-                        Player.setHeldItemIndex(slot1);
-                        RightClick.invoke(Client.getMinecraft());
-                        Player.setHeldItemIndex(slot2);
-                        RightClick.invoke(Client.getMinecraft());
+                        Client.sendPacket(new C09PacketHeldItemChange(slot1));
+                        Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(slot1).getItemStack(), 0, 0, 0));
+                        Client.sendPacket(new C09PacketHeldItemChange(slot2));
+                        Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(slot2).getItemStack(), 0, 0, 0));
                         Player.setHeldItemIndex(ogSlot);
                         swap_time = Date.now();
                     }

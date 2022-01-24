@@ -4,6 +4,7 @@ import {
 import {
     macros
 } from "../../index";
+import { BP, C08PacketPlayerBlockPlacement, C09PacketHeldItemChange } from "../../utils/Constants";
 
 let swap_time = Date.now();
 
@@ -32,16 +33,16 @@ const tripleSwapStep = () => {
             if (Date.now() - swap_time > 250) {
                 new Thread(() => {
                     Thread.sleep(macros.tripleSwapDelay);
-                    Player.setHeldItemIndex(itemSlot1);
+                    Client.sendPacket(new C09PacketHeldItemChange(itemSlot1));
                     Thread.sleep(macros.tripleSwapDelay);
-                    RightClick.invoke(Client.getMinecraft());
-                    Player.setHeldItemIndex(itemSlot2);
+                    Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(itemSlot1).getItemStack(), 0, 0, 0));
+                    Client.sendPacket(new C09PacketHeldItemChange(itemSlot2));
                     Thread.sleep(macros.tripleSwapDelay);
-                    RightClick.invoke(Client.getMinecraft());
-                    Player.setHeldItemIndex(itemSlot3);
+                    Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(itemSlot2).getItemStack(), 0, 0, 0));
+                    Client.sendPacket(new C09PacketHeldItemChange(itemSlot3));
                     Thread.sleep(macros.tripleSwapDelay);
-                    RightClick.invoke(Client.getMinecraft());
-                    Player.setHeldItemIndex(originalSlot);
+                    Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(itemSlot3).getItemStack(), 0, 0, 0));
+                    Client.sendPacket(new C09PacketHeldItemChange(originalSlot));
                     swap_time = Date.now();
                 }).start()
             }
@@ -75,16 +76,16 @@ const tripleSwapClick = (button) => {
                     if (Player.getHeldItem() !== null && Player.getHeldItem().getName().includes(macros.macroSwapName)) {
                         new Thread(() => {
                             Thread.sleep(macros.tripleSwapDelay);
-                            Player.setHeldItemIndex(itemSlot1);
+                            Client.sendPacket(new C09PacketHeldItemChange(itemSlot1));
                             Thread.sleep(macros.tripleSwapDelay);
-                            RightClick.invoke(Client.getMinecraft());
-                            Player.setHeldItemIndex(itemSlot2);
+                            Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(itemSlot1).getItemStack(), 0, 0, 0));
+                            Client.sendPacket(new C09PacketHeldItemChange(itemSlot2));
                             Thread.sleep(macros.tripleSwapDelay);
-                            RightClick.invoke(Client.getMinecraft());
-                            Player.setHeldItemIndex(itemSlot3);
+                            Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(itemSlot2).getItemStack(), 0, 0, 0));
+                            Client.sendPacket(new C09PacketHeldItemChange(itemSlot3));
                             Thread.sleep(macros.tripleSwapDelay);
-                            RightClick.invoke(Client.getMinecraft());
-                            Player.setHeldItemIndex(originalSlot);
+                            Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(itemSlot3).getItemStack(), 0, 0, 0));
+                            Client.sendPacket(new C09PacketHeldItemChange(originalSlot));
                             swap_time = Date.now();
                         }).start()
                     }
