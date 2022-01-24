@@ -23,7 +23,7 @@ Latest Version: 3.0.0 | Last Updated: Jan 24th 2022
 
 ## Information and Features
 #### The command to open the GUI is `/ner` 
-##### NotEnoughRacism is a Hypixel Skyblock [ChatTrigger](https://chattriggers.com) Module that `eznick`, `Paddy34a` and `iTqxic` created. It is a "QoL" or Cheat module meant to make players lives easier on Skyblock. This is a Use At Your Own Risk Module, any bans are not our fault. To report bugs dm `iTqxic#5961` on Discord. Depending on how busy I am, I will update and patch the bug. To suggest features dm `iTqxic#5961` on Discord. If your suggestion is retarded I will ignore you. Nothing from this mod can be copied without `iTqxic`'s or `eznick`'s Permission. 
+##### NotEnoughRacism is a Hypixel Skyblock [ChatTrigger](https://chattriggers.com) Module that `eznick` and `iTqxic` created. It is a "QoL" or Cheat module meant to make players lives easier on Skyblock. This is a Use At Your Own Risk Module, any bans are not our fault. To report bugs or make suggestions join our [Discord](https://discord.gg/mdfmj8mpUE). Nothing from this mod can be copied without `iTqxic`'s or `eznick`'s Permission. 
 
 <details>
   <summary>Features</summary>
