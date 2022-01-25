@@ -1,5 +1,6 @@
 // Imports:
 
+import "./client"
 import config from "./settings/config";
 import RenderLib from "../../RenderLib/index";
 import dungeons from "./settings/dungeons";
