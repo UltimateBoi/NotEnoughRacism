@@ -2,7 +2,7 @@
     "$schema": "../CTAutocomplete/schema.json",
     "name": "Not Enough Racism ",
     "creator": "iTqxic, Paddy34a & eznick",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "entry": "init.js",
     "description": "Skyblock Racists QOL Mod",
     "requires": [

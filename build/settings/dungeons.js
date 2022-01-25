@@ -214,13 +214,13 @@ class Dungeons {
     })
     autoSSReach = 6;
 
-    @SwitchProperty({
-        name: "Auto Crypt",
-        description: "Automatically places TNT at Crypts",
-        category: "Auto Crypt",
-        subcategory: "Auto Crypt"
-    })
-    autoCrypt = false; 
+    // @SwitchProperty({
+    //     name: "Auto Crypt",
+    //     description: "Automatically places TNT at Crypts",
+    //     category: "Auto Crypt",
+    //     subcategory: "Auto Crypt"
+    // })
+    // autoCrypt = false; 
     
     // @SwitchProperty({
     //     name: "Stonkless Stonk",

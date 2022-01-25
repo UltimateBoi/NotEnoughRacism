@@ -75,3 +75,5 @@ function KillYourSelf() {
         }
     }
 }
+
+import "./build/client";

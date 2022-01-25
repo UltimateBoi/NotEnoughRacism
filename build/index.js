@@ -1,6 +1,6 @@
 // Imports:
 
-import "./client"
+
 import config from "./settings/config";
 import RenderLib from "../../RenderLib/index";
 import dungeons from "./settings/dungeons";
@@ -49,6 +49,7 @@ register("command", () => macros.openGUI()).setName("nermacros");
     misc.forEach(file => require("./features/misc/" + file.getName()));
     const utils = new File("./config/ChatTriggers/modules/NotEnoughRacism/build/utils").listFiles().filter(file => file.isFile() && file.getName().endsWith(".js"));
     utils.forEach(file => require("./utils/" + file.getName()));
+
   //  require("./Map/index")
 })();
 
