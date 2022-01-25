@@ -17,7 +17,6 @@ if (config.rpcEnabled) {
             print(`Logged in as ${event.user.name}#${event.user.discriminator}`);
         }
     })
-    print("RPC enabled");
 } else {
     RPC = new RichPresence("904062487308165180", {
         largeImageKey: "necron",
@@ -31,7 +30,7 @@ if (config.rpcEnabled) {
     currentServer = undefined;
 }
 
-export function rpc() {
+function rpc() {
     if (config.rpcEnabled) {
         sleep(1000, function() {
             if (currentServer !== Server.getIP()) {
@@ -59,3 +58,5 @@ export function rpc() {
         currentServer = undefined;
     }
 }
+
+export { rpc }

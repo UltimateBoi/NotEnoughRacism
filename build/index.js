@@ -7,8 +7,9 @@ import esp from "./settings/esp";
 import macros from "./settings/macros";
 import request from "../../request/index";
 import slayer from "./settings/slayer";
+import sleep from "../../sleep/index";
 
-export { RenderLib, config, macros, dungeons, esp, slayer, request };
+export { RenderLib, config, macros, dungeons, esp, slayer, request, sleep };
 
 register("command", () => config.openGUI()).setName("nergeneral");
 register("command", () => dungeons.openGUI()).setName("nerdungeons");

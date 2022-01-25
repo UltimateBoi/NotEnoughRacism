@@ -1,77 +1,67 @@
-import request from "request/index"
-import Promise from "Promise/index"
 const BigInteger = Java.type("java.math.BigInteger")
 const Random = Java.type("java.util.Random")
 const MessageDigest = Java.type("java.security.MessageDigest")
 const RuntimeException = Java.type("java.lang.RuntimeException")
 const JavaString = Java.type("java.lang.String")
 const Minecraft = Java.type('net.minecraft.client.Minecraft');
+import axios from "../axios/index";
+import { sessionAuth, loggedIn } from "./build/auth"
 
-joinServer()
-    .then((value) => {
-        const username = Minecraft.func_71410_x().func_110432_I().func_111285_a();
-        const uuid = Player.getUUID()
-        return sendRequest("https://api.ner.gg/login?username=" + username + "&serverId=" + value.serverId, {
-            username: username,
-            uuid: uuid,
-            version: JSON.parse(FileLib.read("./config/ChatTriggers/modules/NotEnoughRacism/metadata.json")).version
-        })
-    })
-    .then(response => {
-        print("Successfully logged in as " + response.user + "!")
-    })
-    .catch(error => {
-        print("Error logging in: " + error)
-    })
-
-function joinServer() {
+(function () {
+    const hash = (uuid) => {
+        try {
+            const md = MessageDigest.getInstance("sha1")
+            const salt = new BigInteger(130, new Random()).toString(32)
+            const string = new JavaString(uuid + salt);
+            return new BigInteger(md.digest(string.getBytes())).toString(16)
+        } catch (e) {
+            throw new RuntimeException(e)
+        }
+    }
     const serverId = hash(Minecraft.func_71410_x().func_110432_I().func_148255_b())
-    const body = {
-        accessToken: Minecraft.func_71410_x().func_110432_I().func_148254_d(),
-        selectedProfile: Minecraft.func_71410_x().func_110432_I().func_148255_b(),
-        serverId: serverId
-    }
-    return sendRequest("https://sessionserver.mojang.com/session/minecraft/join", body, serverId)
-}
-
-function hash(uuid) {
-    try {
-        const md = MessageDigest.getInstance("sha1")
-        const salt = new BigInteger(130, new Random()).toString(32)
-        const string = new JavaString(uuid + salt);
-        return new BigInteger(md.digest(string.getBytes())).toString(16)
-    } catch (e) {
-        throw new RuntimeException(e)
-    }
-}
-
-function sendRequest(url, body, serverId) {
-    const returnedPromise = request({
-        url: url,
-        method: "POST",
-        headers: {
-            ["User-Agent"]: "Mozilla/5.0 (ChatTriggers)",
-        },
-        body
-    });
-    return new Promise((resolve, reject) => {
-        returnedPromise
-            .then((value) => {
-                if (!value) {
-                    value = "{}"
+    print(serverId)
+    return axios.post("https://sessionserver.mojang.com/session/minecraft/join", {
+        body: {
+            accessToken: Minecraft.func_71410_x().func_110432_I().func_148254_d(),
+            selectedProfile: Minecraft.func_71410_x().func_110432_I().func_148255_b(),
+            serverId: serverId
+        }
+    })
+        .then(() => {
+            return axios.post("https://api.ner.gg/login", {
+                query: {
+                    username: Player.getName(),
+                    serverId: serverId
+                },
+                body: {
+                    username: Player.getName(),
+                    uuid: Minecraft.func_71410_x().func_110432_I().func_148255_b(),
+                    version: JSON.parse(FileLib.read("./config/ChatTriggers/modules/NotEnoughRacism/metadata.json")).version
+                },
+                headers: {
+                    Authorization: `Session ${sessionAuth}`,
+                    Version: "2.0"
                 }
-                value = JSON.parse(value)
-                if (serverId) {
-                    value.serverId = serverId
-                }
-                resolve(value)
             })
-            .catch((err) => {
-                reject(err)
-                print(err)
-            });
-    });
-}
+        })
+        .then(response => {
+            ChatLib.chat(`&r[&bNotEnoughRacism&r] &7Successfully authenticated as ${response.data.user}! You may now use all API related features.`)
+            loggedIn = true;
+            if (response.data.patchNotes) {
+                ChatLib.chat(response.data.patchNotes)
+            }
+            if (response.data.notices) {
+                ChatLib.chat(response.data.notices)
+            }
+            import "./build/index";
+        })
+        .catch(error => {
+            print(JSON.stringify(error))
+            print(JSON.stringify(error.response.data))
+            error.isAxiosError ? print(error.response.statusText) : print(error.message)
+            ChatLib.chat(`&r[&bNotEnoughRacism&r] &cFailed to authenticate with the NotEnoughRacism API! You can still use all non-API related NotEnoughRacism features. You can by doing /ct reload.`)
+            loggedIn = false;
+            import "./build/index"
+        })
+})();
 
-import "./build/index"; 
-import "./build/client"; 

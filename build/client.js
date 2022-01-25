@@ -62,7 +62,7 @@ import { witherCloakGhostArm } from "./features/misc/CreeperGhostArm";
 import { drawBoxOnEntity, getEntities } from "./features/esp/ESP";
 import { sercretAura } from "./features/macros/SecretAura";
 // import { rpc } from "./features/misc/RichPresence";
-import SpotifyController from "./utils/SpotifyController";
+// import SpotifyController from "./utils/SpotifyController";
 import { s1LeapGUI, s1LeapTick } from "./features/guimacros/S1Leap";
 import { buggedChunkLeapGUI, buggedChunkLeapTick } from "./features/guimacros/BuggedChunkLeap";
 import { autoSpirit } from "./features/guimacros/AutoSpirit";
@@ -107,8 +107,8 @@ const secretauraSwitchSettingsKeybind = new KeyBind("Secret Aura", Keyboard.KEY_
 const doubleSwap = new KeyBind("Double Swap Macro", Keyboard.KEY_NONE, ADVANCE_PREFIX);
 const tripleSwap = new KeyBind("Triple Swap Macro", Keyboard.KEY_NONE, ADVANCE_PREFIX);
 
-const spotifyNext = new KeyBind("Next Song", Keyboard.KEY_NONE, SPOTIFY_PREFIX)
-const spotifyPrev = new KeyBind("Previous Song", Keyboard.KEY_NONE, SPOTIFY_PREFIX)
+// const spotifyNext = new KeyBind("Next Song", Keyboard.KEY_NONE, SPOTIFY_PREFIX)
+// const spotifyPrev = new KeyBind("Previous Song", Keyboard.KEY_NONE, SPOTIFY_PREFIX)
 
 let termSwap = false;
 let isGrindingGhosts = false;
@@ -143,12 +143,12 @@ register("tick", (ticks) => {
     if (macros.autoSalvage) {
         autoSalvage();
     }
-    if (spotifyNext.isPressed()) {
-        SpotifyController.skipToNext()
-    }
-    if (spotifyPrev.isPressed()) {
-        SpotifyController.skipToPrevious()
-    }
+    // if (spotifyNext.isPressed()) {
+    //     SpotifyController.skipToNext()
+    // }
+    // if (spotifyPrev.isPressed()) {
+    //     SpotifyController.skipToPrevious()
+    // }
     if (useEndStone.isPressed()) {
         endStoneSwordtoKatana();
     }

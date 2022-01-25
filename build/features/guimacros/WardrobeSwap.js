@@ -65,33 +65,33 @@ const autoWardrobeTick = (first, second, third, fourth, fifth, sixth, seventh, e
 }
 
 const autoWardrobeGUI = () => {
-  //  try {
-        if (attemptedToSwapArmor && Player.getOpenedInventory().getName().includes("Pets")) {
-            let inv = Player.getOpenedInventory();
-            inv.click(48, false, "MIDDLE");
-            hasOpenedSBMenu = true; 
-        } else if (attemptedToSwapArmor && hasOpenedSBMenu && Player.getOpenedInventory().getName().includes("SkyBlock Menu")) {
-            let inv = Player.getOpenedInventory();
-            inv.click(32, false, "MIDDLE");
-            hasOpenedWardrobeMenu = true;
-        } else if (attemptedToSwapArmor && hasOpenedWardrobeMenu && Player.getOpenedInventory().getName().includes("Wardrobe")) {
-            let inv = Player.getOpenedInventory();
-            for (let i = 0; i < 45; i++) {
-                let item = inv.getStackInSlot(i);
-                if (item!== null && item.getName().includes(`Slot ${slotNumber}:`)) {
-                    let action = Action.of(inv, i, "CLICK");
-                    action.setClickString("LEFT");
-                    action.complete();
-                    setTimeout(() => {
-                        Client.currentGui.close();
-                    }, 100);
-                    hasOpenedSBMenu = false;
-                    hasOpenedWardrobeMenu = false;
-                    attemptedToSwapArmor = false;
-                }
+    //  try {
+    if (attemptedToSwapArmor && Player.getOpenedInventory().getName().includes("Pets")) {
+        let inv = Player.getOpenedInventory();
+        inv.click(48, false, "MIDDLE");
+        hasOpenedSBMenu = true;
+    } else if (attemptedToSwapArmor && hasOpenedSBMenu && Player.getOpenedInventory().getName().includes("SkyBlock Menu")) {
+        let inv = Player.getOpenedInventory();
+        inv.click(32, false, "MIDDLE");
+        hasOpenedWardrobeMenu = true;
+    } else if (attemptedToSwapArmor && hasOpenedWardrobeMenu && Player.getOpenedInventory().getName().includes("Wardrobe")) {
+        let inv = Player.getOpenedInventory();
+        for (let i = 0; i < 45; i++) {
+            let item = inv.getStackInSlot(i);
+            if (item !== null && item.getName().includes(`Slot ${slotNumber}:`)) {
+                let action = Action.of(inv, i, "CLICK");
+                action.setClickString("LEFT");
+                action.complete();
+                setTimeout(() => {
+                    Client.currentGui.close();
+                }, 100);
+                hasOpenedSBMenu = false;
+                hasOpenedWardrobeMenu = false;
+                attemptedToSwapArmor = false;
             }
         }
-  //  } catch (e) { console.log(e) }
+    }
+    //  } catch (e) { console.log(e) }
 }
 
 export { autoWardrobeGUI, autoWardrobeTick }; 

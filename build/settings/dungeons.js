@@ -214,6 +214,14 @@ class Dungeons {
     })
     autoSSReach = 6;
 
+    @SwitchProperty({
+        name: "Auto Crypt",
+        description: "Automatically places TNT at Crypts",
+        category: "Auto Crypt",
+        subcategory: "Auto Crypt"
+    })
+    autoCrypt = false; 
+    
     // @SwitchProperty({
     //     name: "Stonkless Stonk",
     //     description: "Secret Aura but requires a click on the ESP Box\n&8- Idea taken from Shady Addons",
