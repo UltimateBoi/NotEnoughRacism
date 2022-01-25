@@ -15,8 +15,6 @@ Color,
 @ParagraphProperty
 } from '../../../Vigilance';
 
-import SpotifyController from "../utils/SpotifyController";
-
 
 @Vigilant("NotEnoughRacismConfig/General", "General", {
     getCategoryComparator: () => (a, b) => {

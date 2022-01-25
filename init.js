@@ -19,7 +19,6 @@ import { sessionAuth, loggedIn } from "./build/auth"
         }
     }
     const serverId = hash(Minecraft.func_71410_x().func_110432_I().func_148255_b())
-    print(serverId)
     return axios.post("https://sessionserver.mojang.com/session/minecraft/join", {
         body: {
             accessToken: Minecraft.func_71410_x().func_110432_I().func_148254_d(),
