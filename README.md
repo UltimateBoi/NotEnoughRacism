@@ -1,5 +1,5 @@
 # NotEnoughRacism 
-Latest Version: 3.0.0 | Last Updated: Jan 24th 2022
+Latest Version: 3.0.2 | Last Updated: Jan 27th 2022
 <div class="zzz" allign="left">
 <img src="https://cdn.discordapp.com/icons/904778713361698816/9990f7855310d3c6f887023176875a87.png?size=256">
   </div>
@@ -125,5 +125,9 @@ Latest Version: 3.0.0 | Last Updated: Jan 24th 2022
       - Triple Swap Macro
         - Toggle
         - Left Click
-  
+  - Commands
+    - `/Goto <island>` - Bypasses In-Combat Limitations
+    - `/snipe` - Find someone in a lobby
+    - F1-F7 & M1-M7 Commands
+    - `/petswap <pet>` 
   </details>
