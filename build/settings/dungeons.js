@@ -215,12 +215,33 @@ class Dungeons {
     autoSSReach = 6;
 
     // @SwitchProperty({
-    //     name: "Auto Crypt",
-    //     description: "Automatically places TNT at Crypts",
-    //     category: "Auto Crypt",
-    //     subcategory: "Auto Crypt"
+    //     name: "Auto TNT",
+    //     description: "Automatically places TNT",
+    //     category: "Auto TNT",
+    //     subcategory: "Auto TNT"
     // })
-    // autoCrypt = false; 
+    // autoTNT = false; 
+
+    // @CheckboxProperty({
+    //     name: "Auto Crypt",
+    //     category: "Auto TNT",
+    //     subcategory: "Auto TNT"
+    // })
+    // autoCrypt = false;
+
+    // @CheckboxProperty({
+    //     name: "Auto Cracked Bricks",
+    //     category: "Auto TNT",
+    //     subcategory: "Auto TNT"
+    // })
+    // autoWall = false;
+
+    // @CheckboxProperty({
+    //     name: "Auto Break Gate",
+    //     category: "Auto TNT",
+    //     subcategory: "Auto TNT"
+    // })
+    // autoGate = false;
     
     // @SwitchProperty({
     //     name: "Stonkless Stonk",
@@ -262,6 +283,9 @@ class Dungeons {
         this.addDependency("Auto Simon Says Reach", "Auto Simon Says");
         // this.addDependency("Stonkless Stonk Reach", "Stonkless Stonk");
         // this.addDependency("Disable in Boss", "Stonkless Stonk");
+        // this.addDependency("Auto Crypt", "Auto TNT");
+        // this.addDependency("Auto Cracked Bricks", "Auto TNT"); 
+        // this.addDependency("Auto Break Gate", "Auto TNT");
     }
 }
 export default new Dungeons;

@@ -337,7 +337,7 @@ register("step", () => {
 }).setFps(2);
 
 register("step", () => {
-     rpc()
+    rpc()
 }).setFps(1)
 
 // register("worldLoad", () => {
@@ -347,7 +347,7 @@ register("step", () => {
 // })
 
 register("worldUnload", () => {
-     rpc()
+    rpc()
 })
 
 register("renderEntity", (entity, pos, pticks, event) => {
@@ -359,7 +359,7 @@ register("renderEntity", (entity, pos, pticks, event) => {
         witherCloakGhostArm(entity);
     }
     if (config.lividGhostArm && config.ghostArmToggle) {
-        getCorrectLivid(entity); 
+        getCorrectLivid(entity);
     }
 });
 
@@ -396,9 +396,21 @@ register("scrolled", (x, y, direction) => {
     spotifyGuiScroll(direction);
 })
 
+let zzz = false;
+
+register("guiMouseClick", (x, y, button, gui, event) => {
+  //  ChatLib.chat("clicked")
+    if (isMouseOver(config.spotifyX, config.spotifyY, config.spotifyWidth, config.spotifyHeight)) {
+        zzz = true;
+      //  ChatLib.chat("true");
+    } else {
+        zzz = false;
+    }
+  //  ChatLib.chat(gui);
+})
 register("dragged", (dX, dY, x, y) => {
-    if (config.moveSongGui.isOpen()) {
-        if (isMouseOver(x, y, config.spotifyWidth, config.spotifyHeight)) {
+    if (zzz) {
+        if (config.moveSongGui.isOpen()) {
             config.spotifyX = x;
             config.spotifyY = y;
         }
@@ -409,10 +421,14 @@ register("renderOverlay", () => {
     spotifyRenderOverlay(config.moveSongGui.isOpen());
 })
 
-register("guiClosed", () => {
+register("guiClosed", (gui) => {
     if (config.moveSongGui.isOpen()) {
         ChatLib.command("nergeneral", true);
     }
+    // ChatLib.chat(gui);
+    // if (gui === "gg.essential.vigilance.gui.SettingsGui@50c776dc") { // gg.essential.vigilance.gui.SettingsGui@577cd5d
+    //     ChatLib.command("ner");
+    // }
 })
 
 let calcMsg = new Message(new TextComponent("&r                     &r&fSecrets Found: &r&bCalculating..&r"))

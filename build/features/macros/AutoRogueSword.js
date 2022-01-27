@@ -1,4 +1,5 @@
 import { dungeons } from "../..";
+import { BP } from "../../utils/Constants";
 
 let inHowl = false;
 let inSpidersDen = false;
@@ -67,7 +68,7 @@ const autoRogueSword = (toggle) => {
                         if (Player.getInventory().getStackInSlot(i) !== null && Player.getInventory().getStackInSlot(i).getName().removeFormatting().toLowerCase().includes("rogue")) {
                             Client.sendPacket(new C09PacketHeldItemChange(i));
                             for (let j = 0; j < dungeons.autoRogueClicks; j++) {
-                                Client.sendPacket(new C08PacketPlayerBlockPlacement(new BlockPos(-1, -1, -1), 255, Player.getInventory().getStackInSlot(i).getItemStack(), 0, 0, 0));
+                                Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(i).getItemStack(), 0, 0, 0));
                                // ChatLib.chat("Clicked Rogue Sword");
                             }
                             Client.sendPacket(new C09PacketHeldItemChange(Player.getInventory().getInventory().field_70461_c));

@@ -7,7 +7,7 @@ let leapPossible = true;
 
 let inBoss = false;
 let p3Started = false;
-let bloodOpened = false;
+
 
 
 register("chat", () => {
@@ -18,6 +18,7 @@ register("chat", () => {
     p3Started = true;
 }).setChatCriteria("[BOSS] Necron: I'VE HAD ENOUGH! YOU HUMANS ARE FIGHTING WITHOUT HONOR!").setContains();
 
+let bloodOpened = false;
 register("chat", function () {
     bloodOpened = false;
 }).setChatCriteria("&e[NPC] &bMort&f: &rHere, I found this map when I first entered the dungeon.&r").setContains();
