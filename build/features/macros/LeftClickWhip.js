@@ -22,7 +22,7 @@ const leftClickSoulWhip = (button, toggle) => {
                         if (Player.getHeldItem().getName().includes(macros.leftClickWhip)) {
                             Client.sendPacket(new C09PacketHeldItemChange(whipslot));
                             Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(whipslot).getItemStack(), 0, 0, 0))
-                            Player.setHeldItemIndex(atomsplitslot);
+                            Client.sendPacket(new C09PacketHeldItemChange(atomsplitslot));
                             swapTime = new Date().getTime();
                         }
                     }

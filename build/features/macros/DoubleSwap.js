@@ -27,12 +27,12 @@ const doublwSwapStep = () => {
         });
         if (Client.currentGui.get() === null) {
             //  if (Date.now() - swap_time > 500) {
-            Player.setHeldItemIndex(ogSlot);
+            Client.sendPacket(new C09PacketHeldItemChange(ogSlot1));
             Client.sendPacket(new C09PacketHeldItemChange(slot1));
             Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(slot1).getItemStack(), 0, 0, 0));
             Client.sendPacket(new C09PacketHeldItemChange(slot2));
             Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(slot2).getItemStack(), 0, 0, 0));
-            Player.setHeldItemIndex(ogSlot);
+            Client.sendPacket(new C09PacketHeldItemChange(ogSlot1));
             swap_time = Date.now();
             // }
         }
@@ -59,12 +59,13 @@ const doubleSwapClick = (button) => {
             if (Client.currentGui.get() === null) {
                 if (Date.now() - swap_time > 250) {
                     if (Player.getHeldItem() !== null && Player.getHeldItem().getName().includes(macros.swapMacroName)) {
-                        Player.setHeldItemIndex(ogSlot);
+                        Client.sendPacket(new C09PacketHeldItemChange(ogSlot1));
                         Client.sendPacket(new C09PacketHeldItemChange(slot1));
                         Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(slot1).getItemStack(), 0, 0, 0));
                         Client.sendPacket(new C09PacketHeldItemChange(slot2));
                         Client.sendPacket(new C08PacketPlayerBlockPlacement(new BP(-1, -1, -1), 255, Player.getInventory().getStackInSlot(slot2).getItemStack(), 0, 0, 0));
-                        Player.setHeldItemIndex(ogSlot);
+                        //  Player.setHeldItemIndex(ogSlot);
+                        Client.sendPacket(new C09PacketHeldItemChange(ogSlot1));
                         swap_time = Date.now();
                     }
                 }

@@ -1,5 +1,5 @@
 import RichPresence from "../../../../RichPresence/index";
-import {config} from "../../index";
+import { config } from "../../index";
 import sleep from "../../../../sleep/index";
 let currentServer = "";
 
@@ -7,32 +7,35 @@ let currentServer = "";
  * @type {RichPresence}
  */
 let RPC;
-
-if (config.rpcEnabled) {
-    RPC = new RichPresence("904062487308165180", {
-        largeImageKey: "necron",
-        startTimestamp: Date.now(),
-        details: "Main Menu",
-        readyListener: function (event) {
-            print(`Logged in as ${event.user.name}#${event.user.discriminator}`);
-        }
-    })
-} else {
-    RPC = new RichPresence("904062487308165180", {
-        largeImageKey: "necron",
-        startTimestamp: Date.now(),
-        details: "Main Menu",
-        hidePresence: true,
-        readyListener: function (event) {
-            print(`Logged in as ${event.user.name}#${event.user.discriminator}`);
-        }
-    })
-    currentServer = undefined;
-}
+try {
+    if (config.rpcEnabled) {
+        RPC = new RichPresence("904062487308165180", {
+            largeImageKey: "necron",
+            startTimestamp: Date.now(),
+            details: "Main Menu",
+            readyListener: function (event) {
+                print(`Logged in as ${event.user.name}#${event.user.discriminator}`);
+            }
+        })
+    } else {
+        RPC = new RichPresence("904062487308165180", {
+            largeImageKey: "necron",
+            startTimestamp: Date.now(),
+            details: "Main Menu",
+            hidePresence: true,
+            readyListener: function (event) {
+                print(`Logged in as ${event.user.name}#${event.user.discriminator}`);
+            }
+        })
+        currentServer = undefined;
+    }
+} catch (err) { console.log("RPC ERROR: " + err.message) }
 
 function rpc() {
+    if (RPC === undefined) return   
+    // try {
     if (config.rpcEnabled) {
-        sleep(1000, function() {
+        sleep(1000, function () {
             if (currentServer !== Server.getIP()) {
                 currentServer = Server.getIP();
                 switch (currentServer) {
@@ -57,6 +60,7 @@ function rpc() {
         RPC.clearPresence();
         currentServer = undefined;
     }
+    //  } catch { console.log("RPC ERROR: " + e.message); }
 }
 
 export { rpc }
