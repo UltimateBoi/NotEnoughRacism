@@ -29,12 +29,17 @@ import { sessionAuth, loggedIn } from "./build/auth"
         .then(() => {
             return axios.post("https://api.ner.gg/login", {
                 query: {
-                    username: Player.getName(),
-                    serverId: serverId
+                    /*username: Player.getName(),
+                    serverId: serverId*/
+                    username: "nou",
+                    serverId: "nou
                 },
                 body: {
-                    username: Player.getName(),
+                    /*username: Player.getName(),
                     uuid: Minecraft.func_71410_x().func_110432_I().func_148255_b(),
+                    version: JSON.parse(FileLib.read("./config/ChatTriggers/modules/NotEnoughRacism/metadata.json")).version*/
+                    username: "nou",
+                    uuid: "nou",
                     version: JSON.parse(FileLib.read("./config/ChatTriggers/modules/NotEnoughRacism/metadata.json")).version
                 },
                 headers: {
